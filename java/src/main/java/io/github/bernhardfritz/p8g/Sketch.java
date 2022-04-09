@@ -1,0 +1,145 @@
+package io.github.bernhardfritz.p8g;
+
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
+
+public abstract class Sketch {
+
+    static {
+        try {
+            String osName = System.getProperty("os.name");
+            if (osName.startsWith("Windows")) {
+                load("glfw3.dll");
+                load("p8g.dll");
+                load("io_github_bernhardfritz_p8g_Sketch.dll");
+            } else if (osName.startsWith("Linux") || osName.startsWith("FreeBSD") || osName.startsWith("SunOS") || osName.startsWith("Unix")) {
+                load("libglfw.so");
+                load("libp8g.so");
+                load("libio_github_bernhardfritz_p8g_Sketch.so");
+            } else if (osName.startsWith("Mac OS X") || osName.startsWith("Darwin")) {
+                load("libglfw.3.dylib");
+                load("libp8g.dylib");
+                load("libio_github_bernhardfritz_p8g_Sketch.dylib");
+            } else {
+                throw new UnsupportedOperationException("Unknown platform: " + osName);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final int CORNER = 0;
+    public static final int CORNERS = 1;
+    public static final int RADIUS = 2;
+    public static final int CENTER = 3;
+
+    public static final int RGB = 0;
+    public static final int HSB = 1;
+    public static final int HSL = 2;
+
+    public static int width = 100;
+    public static int height = 100;
+    private static int colorMode = RGB;
+
+    public static native void applyMatrix(float a, float b, float c, float d, float e, float f);
+    public static native void background(float[] color);
+    public static void background(float gray) {
+        background(new float[] { gray, gray, gray, colorMode == RGB ? 255.f : 1.f });
+    }
+    public static void background(float gray, float alpha) {
+        background(new float[] { gray, gray, gray, alpha });
+    }
+    public static void background(float v1, float v2, float v3) {
+        background(new float[] { v1, v2, v3, colorMode == RGB ? 255.f : 1.f });
+    }
+    public static void background(float v1, float v2, float v3, float alpha) {
+        background(new float[] { v1, v2, v3, alpha });
+    }
+    public static native void colorMode(int mode);
+    public static native void ellipse(float x, float y, float w, float h);
+    public static native void ellipseMode(int mode);
+    public static native void fill(float[] color);
+    public static void fill(float gray) {
+        fill(new float[] { gray, gray, gray, colorMode == RGB ? 255.f : 1.f });
+    }
+    public static void fill(float gray, float alpha) {
+        fill(new float[] { gray, gray, gray, alpha });
+    }
+    public static void fill(float v1, float v2, float v3) {
+        fill(new float[] { v1, v2, v3, colorMode == RGB ? 255.f : 1.f });
+    }
+    public static void fill(float v1, float v2, float v3, float alpha) {
+        fill(new float[] { v1, v2, v3, alpha });
+    }
+    public static native void line(float x1, float y1, float x2, float y2);
+    public static native void noFill();
+    public static native void noSmooth();
+    public static native void noStroke();
+    public static native void point(float x, float y);
+    public static native void pop();
+    public static native void push();
+    public static native void rect(float x, float y, float w, float h);
+    public static native void rectMode(int mode);
+    public static native void resetMatrix();
+    public static native void rotate(float angle);
+    public native void run(int width, int height, String title, boolean fullScreen);
+    public void run(int width, int height, String title) {
+        run(width, height, title, false);
+    }
+    public void run(int width, int height) {
+        run(width, height, "Sketch");
+    }
+    public void run(int width) {
+        run(width, height);
+    }
+    public void run() {
+        run(width);
+    }
+    public static native void scale(float x, float y);
+    public static void scale(float s) {
+        scale(s, s);
+    }
+    public static native void smooth();
+    public static native void stroke(float[] color);
+    public static void stroke(float gray) {
+        stroke(new float[] { gray, gray, gray, colorMode == RGB ? 255.f : 1.f });
+    }
+    public static void stroke(float gray, float alpha) {
+        stroke(new float[] { gray, gray, gray, alpha });
+    }
+    public static void stroke(float v1, float v2, float v3) {
+        stroke(new float[] { v1, v2, v3, colorMode == RGB ? 255.f : 1.f });
+    }
+    public static void stroke(float v1, float v2, float v3, float alpha) {
+        stroke(new float[] { v1, v2, v3, alpha });
+    }
+    public static native void strokeWeight(float weight);
+    public static native void translate(float x, float y);
+    public static native void triangle(float x1, float y1, float x2, float y2, float x3, float y3);
+
+    protected abstract void draw();
+
+    private static File extract(String name) throws IOException {
+        InputStream in = Sketch.class.getResourceAsStream("/" + name);
+        byte[] buffer = new byte[1024];
+        int read = -1;
+        File temp = new File(new File(System.getProperty("java.io.tmpdir")), name);
+        FileOutputStream fos = new FileOutputStream(temp);
+
+        while((read = in.read(buffer)) != -1) {
+            fos.write(buffer, 0, read);
+        }
+        fos.close();
+        in.close();
+
+        return temp;
+    }
+
+    private static void load(String name) throws IOException {
+        File temp = extract(name);
+        System.load(temp.getAbsolutePath());
+    }
+
+}
