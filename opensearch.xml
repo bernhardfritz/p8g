@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Precessing</ShortName>
+  <Description>Search Precessing</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/x-icon">https://bernhardfritz.github.io/p8g/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://bernhardfritz.github.io/p8g/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://bernhardfritz.github.io/p8g/opensearch.xml" />
+  <moz:SearchForm>https://bernhardfritz.github.io/p8g/</moz:SearchForm>
+</OpenSearchDescription>
