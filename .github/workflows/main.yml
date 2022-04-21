@@ -1,6 +1,8 @@
 name: ci
 on:
   push:
+    branches:
+      - 'master'
     tags:
       - 'v*.*.*'
 jobs:
@@ -44,7 +46,7 @@ jobs:
           cd java
           make build/p8g.jar
           rm -rf build/io
-          zip -jr p8g.zip build
+          zip -jr p8g.zip build ../c/p8g.h
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
