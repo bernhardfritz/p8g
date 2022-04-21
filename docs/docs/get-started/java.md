@@ -18,7 +18,7 @@ public class HelloRectangle extends Sketch {
     @Override
     public void draw() {
         background(100);
-        rect(50, 50, 100, 100)
+        rect(50, 50, 100, 100);
     }
 
     public static void main(String[] args) {

@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'p8g',
-  tagline: '2D graphics library',
+  title: 'Precessing',
+  tagline: 'Precessing, also known as p8g, is a general-purpose 2D graphics library.',
   url: 'https://bernhardfritz.github.io',
   baseUrl: '/p8g/',
   onBrokenLinks: 'throw',
@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/bernhardfritz/p8g',
+          editUrl: 'https://github.com/bernhardfritz/p8g/edit/master/docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -37,7 +37,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'p8g',
+        title: 'Precessing',
+        logo: {
+          alt: 'Precessing logo',
+          src: 'img/logo-light.png',
+          srcDark: 'img/logo-dark.png',
+        },
         items: [
           {
             type: 'doc',

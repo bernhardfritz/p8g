@@ -1,4 +1,14 @@
-# p8g - 2D graphics library
+# Precessing
+
+<p align="center">
+  <a href="https://bernhardfritz.github.io/p8g" target="_blank">
+    <img alt="Precessing logo" src="docs/static/img/logo-dark.png">
+  </a>
+</p>
+
+<p align="center">
+  Precessing, also known as <b>p8g</b>, is a general-purpose 2D graphics library.
+</p>
 
 |                                                Beginner friendly                                                 |                                    Language-agnostic                                     |                                                   Cross-platform                                                   |
 | :--------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: |
