@@ -7,7 +7,7 @@ Draws an ellipse (oval) to the screen. By default, the first two parameters set 
 ## Syntax
 
 ```c
-ellipseMode(x, y, w, h)
+ellipse(x, y, w, h)
 ```
 
 ## Parameters

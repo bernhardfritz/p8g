@@ -96,6 +96,11 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ['java'],
       },
+      algolia: {
+        appId: 'S60BTHFQF0',
+        apiKey: '39a9c9e02199c120400239b71a54c389',
+        indexName: 'p8g',
+      },
     }),
 };
 
