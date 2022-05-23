@@ -23,7 +23,7 @@ const FeatureList = [
     title: 'Cross-platform',
     description: (
       <>
-        p8g applications can be developed on and built for all major operating systems including Windows, Linux and macOS.
+        p8g applications can be developed on and built for all major operating systems including Windows, Linux and macOS as well as the web.
       </>
     ),
   },

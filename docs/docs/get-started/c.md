@@ -92,4 +92,22 @@ gcc hello_rectangle.c -L. -lp8g -Wl,-rpath=.
 Tested on Ubuntu 20.04.3 LTS with build essentials installed via `sudo apt install build-essential`.
 
 </TabItem>
+<TabItem value="web" label="Web">
+
+```
+.
+├── hello_rectangle.c
+├── p8g.h
+├── p8g.wasm
+└── p8g.html
+```
+
+```bash
+emcc -s MAIN_MODULE=2 -sEXPORTED_FUNCTIONS=_main -o hello_rectangle.html hello_rectangle.c p8g.wasm -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s FULL_ES3=1 -s USE_GLFW=3 --shell-file p8g.html
+emrun --no_browser hello_rectangle.html
+```
+
+Tested on macOS Mojave 10.14.6 with Emscripten SDK 3.1.8 downloaded and installed from https://emscripten.org/docs/getting_started/downloads.html.
+
+</TabItem>
 </Tabs>
