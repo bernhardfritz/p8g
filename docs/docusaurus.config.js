@@ -56,6 +56,12 @@ const config = {
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
           },
+          {
+            href: 'https://discord.gg/B3vrdJcra6',
+            position: 'right',
+            className: 'header-discord-link',
+            'aria-label': 'Discord',
+          },
         ],
       },
       footer: {
@@ -102,6 +108,20 @@ const config = {
         indexName: 'p8g',
       },
     }),
+
+    plugins: [
+      (context, options) => ({
+        name: 'counter.dev',
+        injectHtmlTags: ({content}) => ({
+          headTags: [
+            {
+              tagName: 'script',
+              innerHTML: 'if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"bernhardfritz",utcoffset:"2"}))};sessionStorage.setItem("_swa","1");',
+            }
+          ]
+        })
+      }),
+    ],
 };
 
 module.exports = config;
