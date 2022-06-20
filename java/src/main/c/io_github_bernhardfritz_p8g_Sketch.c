@@ -6,10 +6,46 @@ static JavaVM *jvm;
 static jobject sketch;
 static jclass sketchClass;
 
-static void draw() {
+static void draw(float deltaTime) {
     JNIEnv *env;
     (*jvm)->AttachCurrentThread(jvm, (void**) &env, NULL);
-    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "draw", "()V"));
+    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "draw", "(F)V"), deltaTime);
+}
+
+static void keyPressed(int keyCode) {
+    JNIEnv *env;
+    (*jvm)->AttachCurrentThread(jvm, (void**) &env, NULL);
+    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "keyPressed", "(I)V"), keyCode);
+}
+
+static void keyReleased(int keyCode) {
+    JNIEnv *env;
+    (*jvm)->AttachCurrentThread(jvm, (void**) &env, NULL);
+    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "keyReleased", "(I)V"), keyCode);
+}
+
+static void mouseMoved(float mouseX, float mouseY) {
+    JNIEnv *env;
+    (*jvm)->AttachCurrentThread(jvm, (void**) &env, NULL);
+    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "mouseMoved", "(FF)V"), mouseX, mouseY);
+}
+
+static void mousePressed(int mouseButton) {
+    JNIEnv *env;
+    (*jvm)->AttachCurrentThread(jvm, (void**) &env, NULL);
+    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "mousePressed", "(I)V"), mouseButton);
+}
+
+static void mouseReleased(int mouseButton) {
+    JNIEnv *env;
+    (*jvm)->AttachCurrentThread(jvm, (void**) &env, NULL);
+    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "mouseReleased", "(I)V"), mouseButton);
+}
+
+static void mouseWheel(float deltaX, float deltaY) {
+    JNIEnv *env;
+    (*jvm)->AttachCurrentThread(jvm, (void**) &env, NULL);
+    (*env)->CallVoidMethod(env, sketch, (*env)->GetMethodID(env, sketchClass, "mouseWheel", "(F)V"), deltaY);
 }
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_applyMatrix(JNIEnv *env, jclass clazz, jfloat a, jfloat b, jfloat c, jfloat d, jfloat e, jfloat f) {
@@ -94,6 +130,12 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_run(JNIEnv *env, 
         .title = nativeTitle,
         .full_screen = fullScreen,
         .draw = draw,
+        .key_pressed = keyPressed,
+        .key_released = keyReleased,
+        .mouse_moved = mouseMoved,
+        .mouse_pressed = mousePressed,
+        .mouse_released = mouseReleased,
+        .mouse_wheel = mouseWheel
     });
     (*env)->ReleaseStringUTFChars(env, title, nativeTitle);
 }

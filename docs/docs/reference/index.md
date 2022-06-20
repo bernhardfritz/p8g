@@ -52,4 +52,21 @@ export const Panel = ({children}) => (
         <a href="/docs/reference/pop">pop</a>
         <a href="/docs/reference/push">push</a>
     </Panel>
+    <Panel>
+        <h2>Events</h2>
+        <a href="/docs/reference/keyCode">keyCode</a>
+        <a href="/docs/reference/keyIsPressed">keyIsPressed</a>
+        <a href="/docs/reference/keyPressed">keyPressed</a>
+        <a href="/docs/reference/keyReleased">keyReleased</a>
+        <a href="/docs/reference/mouseButton">mouseButton</a>
+        <a href="/docs/reference/mouseIsPressed">mouseIsPressed</a>
+        <a href="/docs/reference/mouseMoved">mouseMoved</a>
+        <a href="/docs/reference/mousePressed">mousePressed</a>
+        <a href="/docs/reference/mouseReleased">mouseReleased</a>
+        <a href="/docs/reference/mouseWheel">mouseWheel</a>
+    </Panel>
+    <Panel>
+        <h2>Environment</h2>
+        <a href="/docs/reference/deltaTime">deltaTime</a>
+    </Panel>
 </div>

@@ -41,6 +41,13 @@ public abstract class Sketch {
 
     public static int width = 100;
     public static int height = 100;
+    public static int keyCode;
+    public static boolean keyIsPressed;
+    public static float mouseX;
+    public static float mouseY;
+    public static int mouseButton;
+    public static boolean mouseIsPressed;
+    public static float deltaTime;
     private static int colorMode = RGB;
 
     public static native void applyMatrix(float a, float b, float c, float d, float e, float f);
@@ -120,6 +127,47 @@ public abstract class Sketch {
     public static native void triangle(float x1, float y1, float x2, float y2, float x3, float y3);
 
     protected abstract void draw();
+    protected void keyPressed() {}
+    protected void keyReleased() {}
+    protected void mouseMoved() {}
+    protected void mousePressed() {}
+    protected void mouseReleased() {}
+    protected void mouseWheel(float delta) {}
+
+    private void draw(float deltaTime) {
+        Sketch.deltaTime = deltaTime * 1000.f;
+        draw();
+    }
+
+    private void keyPressed(int keyCode) {
+        Sketch.keyCode = keyCode;
+        keyIsPressed = true;
+        keyPressed();
+    }
+
+    private void keyReleased(int keyCode) {
+        Sketch.keyCode = keyCode;
+        keyIsPressed = false;
+        keyReleased();
+    }
+
+    private void mouseMoved(float mouseX, float mouseY) {
+        Sketch.mouseX = mouseX;
+        Sketch.mouseY = mouseY;
+        mouseMoved();
+    }
+
+    private void mousePressed(int mouseButton) {
+        Sketch.mouseButton = mouseButton;
+        mouseIsPressed = true;
+        mousePressed();
+    }
+
+    private void mouseReleased(int mouseButton) {
+        Sketch.mouseButton = mouseButton;
+        mouseIsPressed = false;
+        mouseReleased();
+    }
 
     private static File extract(String name) throws IOException {
         InputStream in = Sketch.class.getResourceAsStream("/" + name);

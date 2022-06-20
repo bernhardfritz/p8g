@@ -4,7 +4,7 @@ import org.joml.Vector4f;
 import java.util.HashSet;
 import java.util.Set;
 
-import static io.github.bernhardfritz.p8g.Sketch.noStroke;
+import static io.github.bernhardfritz.p8g.Sketch.*;
 
 public class Firework {
 

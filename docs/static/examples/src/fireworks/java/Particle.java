@@ -1,8 +1,7 @@
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
-import static io.github.bernhardfritz.p8g.Sketch.ellipse;
-import static io.github.bernhardfritz.p8g.Sketch.fill;
+import static io.github.bernhardfritz.p8g.Sketch.*;
 
 public class Particle {
 
@@ -31,8 +30,12 @@ public class Particle {
     }
 
     public void update() {
-        velocity.add(acceleration);
-        position.add(velocity);
+        Vector2f deltaVelocity = new Vector2f();
+        acceleration.mul(deltaTime / 19.f, deltaVelocity);
+        velocity.add(deltaVelocity);
+        Vector2f deltaPosition = new Vector2f();
+        velocity.mul(deltaTime / 19.f, deltaPosition);
+        position.add(deltaPosition);
         acceleration.set(0.f , 0.f);
         if (age < lifespan) {
             age = age + 1;

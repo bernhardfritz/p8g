@@ -1536,7 +1536,7 @@ function createExportWrapper(name, fixedasm) {
 }
 
 var wasmBinaryFile;
-  wasmBinaryFile = 'fireworks.wasm';
+  wasmBinaryFile = 'mouse-events.wasm';
   if (!isDataURI(wasmBinaryFile)) {
     wasmBinaryFile = locateFile(wasmBinaryFile);
   }
@@ -1991,7 +1991,7 @@ var ASM_CONSTS = {
       }
     }
   
-  var ___heap_base = 5248800;
+  var ___heap_base = 5248832;
   function getMemory(size) {
       // After the runtime is initialized, we must only use sbrk() normally.
       if (runtimeInitialized)
@@ -2421,16 +2421,11 @@ var ASM_CONSTS = {
   var ___memory_base = new WebAssembly.Global({'value': 'i32', 'mutable': false}, 1024);
   Module["___memory_base"] = ___memory_base;
 
-  var ___stack_pointer = new WebAssembly.Global({'value': 'i32', 'mutable': true}, 5248800);
+  var ___stack_pointer = new WebAssembly.Global({'value': 'i32', 'mutable': true}, 5248832);
   Module["___stack_pointer"] = ___stack_pointer;
 
   var ___table_base = new WebAssembly.Global({'value': 'i32', 'mutable': false}, 1);
   Module["___table_base"] = ___table_base;
-
-  function __emscripten_date_now() {
-      return Date.now();
-    }
-  __emscripten_date_now.sig = 'j';
 
   function _emscripten_force_exit(status) {
       warnOnce('emscripten_force_exit cannot actually shut down the runtime, as the build does not have EXIT_RUNTIME set');
@@ -7463,10 +7458,10 @@ var ASM_CONSTS = {
   return Module['_p8g_ellipse'].apply(null, arguments);
   }
 
-  function _p8g_fill(
+  function _p8g_ellipse_mode(
   ) {
-  if (!Module['_p8g_fill']) abort("external symbol 'p8g_fill' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_fill'].apply(null, arguments);
+  if (!Module['_p8g_ellipse_mode']) abort("external symbol 'p8g_ellipse_mode' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_ellipse_mode'].apply(null, arguments);
   }
 
   function _p8g_height(
@@ -7511,18 +7506,6 @@ var ASM_CONSTS = {
   return Module['_p8g_mouse_is_pressed'].apply(null, arguments);
   }
 
-  function _p8g_mouse_moved(
-  ) {
-  if (!Module['_p8g_mouse_moved']) abort("external symbol 'p8g_mouse_moved' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_mouse_moved'].apply(null, arguments);
-  }
-
-  function _p8g_mouse_pressed(
-  ) {
-  if (!Module['_p8g_mouse_pressed']) abort("external symbol 'p8g_mouse_pressed' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_mouse_pressed'].apply(null, arguments);
-  }
-
   function _p8g_mouse_released(
   ) {
   if (!Module['_p8g_mouse_released']) abort("external symbol 'p8g_mouse_released' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
@@ -7545,12 +7528,6 @@ var ASM_CONSTS = {
   ) {
   if (!Module['_p8g_mouse_y']) abort("external symbol 'p8g_mouse_y' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
   return Module['_p8g_mouse_y'].apply(null, arguments);
-  }
-
-  function _p8g_no_stroke(
-  ) {
-  if (!Module['_p8g_no_stroke']) abort("external symbol 'p8g_no_stroke' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_no_stroke'].apply(null, arguments);
   }
 
   function _p8g_run(
@@ -7787,7 +7764,6 @@ var asmLibraryArg = {
   "__memory_base": ___memory_base,
   "__stack_pointer": ___stack_pointer,
   "__table_base": ___table_base,
-  "_emscripten_date_now": __emscripten_date_now,
   "emscripten_memcpy_big": _emscripten_memcpy_big,
   "emscripten_resize_heap": _emscripten_resize_heap,
   "fd_close": _fd_close,
@@ -7797,7 +7773,7 @@ var asmLibraryArg = {
   "p8g_background": _p8g_background,
   "p8g_delta_time": _p8g_delta_time,
   "p8g_ellipse": _p8g_ellipse,
-  "p8g_fill": _p8g_fill,
+  "p8g_ellipse_mode": _p8g_ellipse_mode,
   "p8g_height": _p8g_height,
   "p8g_key_code": _p8g_key_code,
   "p8g_key_is_pressed": _p8g_key_is_pressed,
@@ -7805,13 +7781,10 @@ var asmLibraryArg = {
   "p8g_key_released": _p8g_key_released,
   "p8g_mouse_button": _p8g_mouse_button,
   "p8g_mouse_is_pressed": _p8g_mouse_is_pressed,
-  "p8g_mouse_moved": _p8g_mouse_moved,
-  "p8g_mouse_pressed": _p8g_mouse_pressed,
   "p8g_mouse_released": _p8g_mouse_released,
   "p8g_mouse_wheel": _p8g_mouse_wheel,
   "p8g_mouse_x": _p8g_mouse_x,
   "p8g_mouse_y": _p8g_mouse_y,
-  "p8g_no_stroke": _p8g_no_stroke,
   "p8g_run": _p8g_run,
   "p8g_width": _p8g_width,
   "setTempRet0": _setTempRet0
@@ -7819,36 +7792,6 @@ var asmLibraryArg = {
 var asm = createWasm();
 /** @type {function(...*):?} */
 var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__wasm_call_ctors");
-
-/** @type {function(...*):?} */
-var _memmove = Module["_memmove"] = createExportWrapper("memmove");
-
-/** @type {function(...*):?} */
-var _cosf = Module["_cosf"] = createExportWrapper("cosf");
-
-/** @type {function(...*):?} */
-var _sinf = Module["_sinf"] = createExportWrapper("sinf");
-
-/** @type {function(...*):?} */
-var _free = Module["_free"] = createExportWrapper("free");
-
-/** @type {function(...*):?} */
-var _realloc = Module["_realloc"] = createExportWrapper("realloc");
-
-/** @type {function(...*):?} */
-var _memset = Module["_memset"] = createExportWrapper("memset");
-
-/** @type {function(...*):?} */
-var _memcpy = Module["_memcpy"] = createExportWrapper("memcpy");
-
-/** @type {function(...*):?} */
-var _strcmp = Module["_strcmp"] = createExportWrapper("strcmp");
-
-/** @type {function(...*):?} */
-var _memcmp = Module["_memcmp"] = createExportWrapper("memcmp");
-
-/** @type {function(...*):?} */
-var _strlen = Module["_strlen"] = createExportWrapper("strlen");
 
 /** @type {function(...*):?} */
 var _main = Module["_main"] = createExportWrapper("main");
@@ -7860,6 +7803,18 @@ var ___errno_location = Module["___errno_location"] = createExportWrapper("__err
 var ___stdio_exit = Module["___stdio_exit"] = createExportWrapper("__stdio_exit");
 
 /** @type {function(...*):?} */
+var _cosf = Module["_cosf"] = createExportWrapper("cosf");
+
+/** @type {function(...*):?} */
+var _memcpy = Module["_memcpy"] = createExportWrapper("memcpy");
+
+/** @type {function(...*):?} */
+var _memmove = Module["_memmove"] = createExportWrapper("memmove");
+
+/** @type {function(...*):?} */
+var _memset = Module["_memset"] = createExportWrapper("memset");
+
+/** @type {function(...*):?} */
 var _fmaxf = Module["_fmaxf"] = createExportWrapper("fmaxf");
 
 /** @type {function(...*):?} */
@@ -7869,13 +7824,31 @@ var _fminf = Module["_fminf"] = createExportWrapper("fminf");
 var _fprintf = Module["_fprintf"] = createExportWrapper("fprintf");
 
 /** @type {function(...*):?} */
+var _memcmp = Module["_memcmp"] = createExportWrapper("memcmp");
+
+/** @type {function(...*):?} */
 var _powf = Module["_powf"] = createExportWrapper("powf");
+
+/** @type {function(...*):?} */
+var _sinf = Module["_sinf"] = createExportWrapper("sinf");
 
 /** @type {function(...*):?} */
 var _snprintf = Module["_snprintf"] = createExportWrapper("snprintf");
 
 /** @type {function(...*):?} */
+var _strcmp = Module["_strcmp"] = createExportWrapper("strcmp");
+
+/** @type {function(...*):?} */
+var _strlen = Module["_strlen"] = createExportWrapper("strlen");
+
+/** @type {function(...*):?} */
 var _malloc = Module["_malloc"] = createExportWrapper("malloc");
+
+/** @type {function(...*):?} */
+var _free = Module["_free"] = createExportWrapper("free");
+
+/** @type {function(...*):?} */
+var _realloc = Module["_realloc"] = createExportWrapper("realloc");
 
 /** @type {function(...*):?} */
 var _setThrew = Module["_setThrew"] = createExportWrapper("setThrew");
@@ -7912,7 +7885,7 @@ var stackAlloc = Module["stackAlloc"] = createExportWrapper("stackAlloc");
 /** @type {function(...*):?} */
 var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
 
-var _stderr = Module['_stderr'] = 5200;
+var _stderr = Module['_stderr'] = 5208;
 
 
 
@@ -8217,7 +8190,7 @@ function stackCheckInit() {
   // get these values before even running any of the ctors so we call it redundantly
   // here.
   // TODO(sbc): Move writeStackCookie to native to to avoid this.
-  _emscripten_stack_set_limits(5248800, 5920);
+  _emscripten_stack_set_limits(5248832, 5952);
   writeStackCookie();
 }
 
