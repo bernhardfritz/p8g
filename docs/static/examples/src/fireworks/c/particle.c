@@ -10,8 +10,12 @@ void particle_apply_force(particle_t* particle, vec2 force) {
 }
 
 void particle_update(particle_t* particle) {
-    vec2_add(particle->velocity, particle->velocity, particle->acceleration);
-    vec2_add(particle->position, particle->position, particle->velocity);
+    vec2 deltaVelocity;
+    vec2_scale(deltaVelocity, particle->acceleration, deltaTime / 19.f);
+    vec2_add(particle->velocity, particle->velocity, deltaVelocity);
+    vec2 deltaPosition;
+    vec2_scale(deltaPosition, particle->velocity, deltaTime / 19.f);
+    vec2_add(particle->position, particle->position, deltaPosition);
     particle->acceleration[0] = 0.f;
     particle->acceleration[1] = 0.f;
     if (particle->age < particle->lifespan) {
