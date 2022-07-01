@@ -18,5 +18,5 @@ void keyPressed() {
 }
 
 int main() {
-    run(400, 400, "Keyboard events");
+    run(512, 512, "Keyboard events");
 }
