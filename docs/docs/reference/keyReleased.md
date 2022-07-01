@@ -9,9 +9,3 @@ The [keyReleased](keyReleased) function is called once every time a key is relea
 ```c
 keyReleased()
 ```
-
-## Parameters
-
-| Parameter | Description                        |
-| --------- | ---------------------------------- |
-| key       | the keyboard key that was released |

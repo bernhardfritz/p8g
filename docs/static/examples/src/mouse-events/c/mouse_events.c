@@ -20,5 +20,5 @@ void mousePressed() {
 }
 
 int main() {
-    run(400, 400, "Mouse events");
+    run(512, 512, "Mouse events");
 }
