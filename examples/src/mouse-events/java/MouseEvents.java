@@ -25,6 +25,6 @@ public class MouseEvents extends Sketch {
 
     public static void main(String[] args) {
         Sketch sketch = new MouseEvents();
-        sketch.run(400, 400, "Mouse events");
+        sketch.run(512, 512, "Mouse events");
     }
 }
