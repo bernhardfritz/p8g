@@ -37,7 +37,7 @@ void p8g_reset_matrix(void);
 void p8g_rotate(float angle);
 typedef struct {
     int width, height;
-    char* title;
+    const char* title;
     int full_screen;
     void (*draw)(float);
     void (*key_pressed)(int);
@@ -135,8 +135,6 @@ static float* _color4fv(float color[4]) {
 #define RGB 0
 #define HSB 1
 #define HSL 2
-#define RADIANS 0
-#define DEGREES 1
 #define applyMatrix(a, b, c, d, e, f) p8g_apply_matrix(a, b, c, d, e, f)
 #define background(...) p8g_background(_color(__VA_ARGS__))
 #define colorMode(mode) \

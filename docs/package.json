@@ -1,6 +1,6 @@
 {
   "name": "p8g-docs",
-  "version": "0.1.1",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
