@@ -7,21 +7,62 @@ jobs:
       matrix:
         include:
         - os: macos-latest
+          DIR: c++
           USE_MINGW: 0
+          MINGW_CC: null
+          USE_EMSCRIPTEN: 0
+          TARGET: c++/build/libp8g++.dylib
+        - os: ubuntu-latest
+          DIR: c++
+          USE_MINGW: 0
+          MINGW_CC: null
+          USE_EMSCRIPTEN: 0
+          TARGET: c++/build/libp8g++.so
+        - os: ubuntu-latest
+          DIR: c++
+          USE_MINGW: 1
+          MINGW_CC: x86_64-w64-mingw32-g++
+          USE_EMSCRIPTEN: 0
+          TARGET: c++/build/p8g++.dll
+        - os: ubuntu-latest
+          DIR: c++
+          USE_MINGW: 0
+          MINGW_CC: null
+          USE_EMSCRIPTEN: 1
+          TARGET: c++/build/p8g++.wasm
+        - os: macos-latest
+          DIR: java
+          USE_MINGW: 0
+          MINGW_CC: null
+          USE_EMSCRIPTEN: 0
           TARGET: java/build/libio_github_bernhardfritz_p8g_Sketch.dylib
         - os: ubuntu-latest
+          DIR: java
           USE_MINGW: 0
+          MINGW_CC: null
+          USE_EMSCRIPTEN: 0
           TARGET: java/build/libio_github_bernhardfritz_p8g_Sketch.so
         - os: ubuntu-latest
+          DIR: java
           USE_MINGW: 1
+          MINGW_CC: x86_64-w64-mingw32-gcc
+          USE_EMSCRIPTEN: 0
           TARGET: java/build/io_github_bernhardfritz_p8g_Sketch.dll
     steps:
       - uses: actions/checkout@v2
       - run: |
-          cd java
+          cd ${{ matrix.DIR }}
           if [ "${{ matrix.USE_MINGW }}" = 1 ]; then
             sudo apt-get install -y mingw-w64
-            make CC=x86_64-w64-mingw32-gcc OS=Windows_NT JNI_MD_DIR=${JAVA_HOME}/include/linux
+            make CC=${{ matrix.MINGW_CC }} OS=Windows_NT JNI_MD_DIR=${JAVA_HOME}/include/linux
+          elif [ "${{ matrix.USE_EMSCRIPTEN }}" = 1 ]; then
+            git clone https://github.com/emscripten-core/emsdk.git
+            cd emsdk
+            ./emsdk install latest
+            ./emsdk activate latest
+            source ./emsdk_env.sh
+            cd ..
+            emmake make
           else
             make
           fi
@@ -37,12 +78,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v3
       - run: |
+          mv build/libp8g++.dylib build/libp8g++.so build/p8g++.dll build/p8g++.wasm c++
           mv build java
           cd java
           make build/p8g.jar
           rm -rf build/io
           rm -f build/io_github_bernhardfritz_p8g_Sketch.dll build/libio_github_bernhardfritz_p8g_Sketch.dylib build/libio_github_bernhardfritz_p8g_Sketch.so
-          zip -jr p8g.zip build ../c/p8g.h ../c/p8g.html ../c/p8g.wasm
+          zip -jr p8g.zip build ../c/p8g.h ../c/p8g.html ../c/p8g.wasm ../c++/libp8g++.dylib ../c++/libp8g++.so ../c++/p8g++.dll ../c++/p8g++.wasm ../c++/p8g.hpp
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:

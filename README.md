@@ -12,7 +12,7 @@
 
 |                                                Beginner friendly                                                 |                                    Language-agnostic                                     |                                                   Cross-platform                                                   |
 | :--------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: |
-| p8g has been developed for individuals interested in getting into creative programming no matter the experience. | p8g is available for both C and Java allowing further language bindings to be developed. | p8g applications can be developed on and built for all major operating systems including Windows, Linux and macOS as well as the web. |
+| p8g has been developed for individuals interested in getting into creative programming no matter the experience. | p8g is available for C, C++ and Java allowing further language bindings to be developed. | p8g applications can be developed on and built for all major operating systems including Windows, Linux and macOS as well as the web. |
 
 ## Links
 

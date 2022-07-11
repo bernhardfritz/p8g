@@ -15,7 +15,7 @@ const FeatureList = [
     title: 'Language-agnostic',
     description: (
       <>
-        p8g is available for both C and Java allowing further language bindings to be developed.
+        p8g is available for C, C++ and Java allowing further language bindings to be developed.
       </>
     ),
   },

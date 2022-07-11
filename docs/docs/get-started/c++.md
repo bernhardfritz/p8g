@@ -3,19 +3,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# C
+# C++
 
-> C is an imperative procedural language. It was designed to be compiled to provide low-level access to memory and language constructs that map efficiently to machine instructions, all with minimal runtime support. Despite its low-level capabilities, the language was designed to encourage cross-platform programming. A standards-compliant C program written with portability in mind can be compiled for a wide variety of computer platforms and operating systems with few changes to its source code.
+> C++ is a general-purpose programming language created by Danish computer scientist Bjarne Stroustrup as an extension of the C programming language, or "C with Classes". The language has expanded significantly over time, and modern C++ now has object-oriented, generic, and functional features in addition to facilities for low-level memory manipulation.
 
-Source: https://en.wikipedia.org/wiki/C_(programming_language)
+Source: https://en.wikipedia.org/wiki/C%2B%2B
 
 ## Hello rectangle!
 
-```c title=hello_rectangle.c
-#define USING_NAMESPACE_P8G
-#include "p8g.h"
+```cpp title=hello_rectangle.cpp
+#include "p8g.hpp"
 
-void draw() {
+using namespace p8g;
+
+void p8g::draw() {
     background(100);
     rect(50, 50, 100, 100);
 }
@@ -41,13 +42,14 @@ int main() {
 ```
 .
 ├── glfw.dll
-├── hello_rectangle.c
+├── hello_rectangle.cpp
+├── p8g++.dll
 ├── p8g.dll
-└── p8g.h
+└── p8g.hpp
 ```
 
 ```
-gcc hello_rectangle.c -L. -lp8g
+g++ -std=c++11 hello_rectangle.cpp -L. -lp8g++
 .\a.exe
 ```
 
@@ -58,14 +60,15 @@ Tested on Windows 10 with https://sourceforge.net/projects/mingw-w64/files/Toolc
 
 ```
 .
-├── hello_rectangle.c
+├── hello_rectangle.cpp
 ├── libglfw.3.dylib
+├── libp8g++.dylib
 ├── libp8g.dylib
-└── p8g.h
+└── p8g.hpp
 ```
 
 ```bash
-gcc hello_rectangle.c -L. -lp8g
+g++ -std=c++11 hello_rectangle.cpp -L. -lp8g++
 install_name_tool -add_rpath @executable_path/. a.out
 ./a.out
 ```
@@ -77,14 +80,15 @@ Tested on macOS Mojave 10.14.6 with command line tools installed via `xcode-sele
 
 ```
 .
-├── hello_rectangle.c
+├── hello_rectangle.cpp
 ├── libglfw.so
+├── libp8g++.so
 ├── libp8g.so
-└── p8g.h
+└── p8g.hpp
 ```
 
 ```bash
-gcc hello_rectangle.c -L. -lp8g -Wl,-rpath=.
+g++ -std=c++11 hello_rectangle.cpp -L. -lp8g++ -Wl,-rpath=.
 ./a.out
 ```
 
@@ -95,14 +99,15 @@ Tested on Ubuntu 20.04.3 LTS with build essentials installed via `sudo apt insta
 
 ```
 .
-├── hello_rectangle.c
-├── p8g.h
-├── p8g.wasm
-└── p8g.html
+├── hello_rectangle.cpp
+├── p8g++.wasm
+├── p8g.hpp
+├── p8g.html
+└── p8g.wasm
 ```
 
 ```bash
-emcc -s MAIN_MODULE=2 -sEXPORTED_FUNCTIONS=_main -o hello_rectangle.html hello_rectangle.c p8g.wasm -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s FULL_ES3=1 -s USE_GLFW=3 --shell-file p8g.html
+em++ -std=c++11 -s MAIN_MODULE=2 -sEXPORTED_FUNCTIONS=_main -o hello_rectangle.html hello_rectangle.cpp p8g++.wasm -L. -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s FULL_ES3=1 -s USE_GLFW=3 --shell-file p8g.html
 emrun --no_browser hello_rectangle.html
 ```
 
