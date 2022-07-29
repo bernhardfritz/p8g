@@ -44,15 +44,15 @@ public class Firework {
     }
 
     public void explode() {
-        Vector4f color = new Vector4f(Random.randf(0.f, 255.f), Random.randf(0.f, 255.f), Random.randf(0.f, 255.f), 255.f);
+        Vector4f color = new Vector4f(random(255.f), random(255.f), random(255.f), 255.f);
         for (int i = 0; i < 200; i++) {
-            float angle = Random.randf(0.f, 2.f * (float) Math.PI);
-            float magnitude = Random.randf(2.f, 10.f);
+            float angle = random(2.f * (float) Math.PI);
+            float magnitude = random(2.f, 10.f);
             Particle particle = new Particle(
                     new Vector2f(rocket.getPosition()),
-                    Random.randf(0.7f, 1.f),
+                    random(0.7f, 1.f),
                     new Vector2f(magnitude * (float) Math.cos(angle), magnitude * (float) Math.sin(angle)),
-                    (int) Random.randf(90.f, 110.f),
+                    (int) random(90.f, 110.f),
                     color
             );
             particles.add(particle);

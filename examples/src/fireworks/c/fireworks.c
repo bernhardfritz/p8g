@@ -1,24 +1,20 @@
-#include <time.h>
-#include <stdlib.h>
-
-#define USING_NAMESPACE_P8G
-#include "p8g.h"
 #define STB_DS_IMPLEMENTATION
 #include "stb_ds.h"
+#define USING_NAMESPACE_P8G
+#include "p8g.h"
 
 #include "firework.h"
-#include "random.h"
 
 firework_t* fireworks = NULL;
 vec2 gravity = { 0.f, 0.2f };
 
 void draw() {
     background(0.f, 0.f, 0.f, 25.5f);
-    if (randf(0.f, 1.f) < 0.1f) {
+    if (random() < 0.1f) {
         firework_t firework = {
             .rocket = {
-                .position = { randf(0, width), height },
-                .velocity = { 0.f, randf(-10.f, -12.f) },
+                .position = { random(width), height },
+                .velocity = { 0.f, random(-10.f, -12.f) },
                 .color = { 255.f, 0.f, 0.f, 255.f },
                 .mass = 1.f,
                 .lifespan = -1,
@@ -44,7 +40,6 @@ void draw() {
 }
 
 int main(void) {
-    srand(time(NULL));
     run(512, 512, "Fireworks");
     for (int i = 0; i < arrlen(fireworks); i++) {
         firework_t* firework = &fireworks[i];

@@ -1,8 +1,7 @@
 #include <glm/glm.hpp>
 
-#include "astar.hpp"
 #include "p8g.hpp"
-#include "rng.hpp"
+#include "astar.hpp"
 
 using namespace p8g;
 
@@ -18,11 +17,9 @@ int coordsToIndex(int x, int y) {
 }
 
 void initCollisionGrid() {
-    Rng& rng = Rng::getInstance();
     for (int y = 0; y < rows; y++) {
         for (int x = 0; x < cols; x++) {
-            float r = rng.random(0.0f, 1.0f);
-            collisionGrid[coordsToIndex(x, y)] = r < 0.25f;
+            collisionGrid[coordsToIndex(x, y)] = random() < 0.25f;
         }
     }
     // ensure there is no collision at the start point

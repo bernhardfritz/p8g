@@ -1,11 +1,8 @@
 #include "firework.h"
 
+#include "stb_ds.h"
 #define USING_NAMESPACE_P8G
 #include "p8g.h"
-
-#include "stb_ds.h"
-
-#include "random.h"
 
 void firework_apply_force(firework_t* firework, vec2 force) {
     if (firework->exploded == 0) {
@@ -42,15 +39,15 @@ void firework_update(firework_t* firework) {
 }
 
 void firework_explode(firework_t* firework) {
-    vec4 color = { randf(0.f, 255.f), randf(0.f, 255.f), randf(0.f, 255.f), 255.f };
+    vec4 color = { random(255.f), random(255.f), random(255.f), 255.f };
     for (int i = 0; i < 200; i++) {
-        float angle = randf(0.f, 2.f * M_PI);
-        float magnitude = randf(2.f, 10.f);
+        float angle = random(2.f * M_PI);
+        float magnitude = random(2.f, 10.f);
         particle_t particle = {
             .position = { firework->rocket.position[0], firework->rocket.position[1] },
-            .mass = randf(0.7f, 1.f),
+            .mass = random(0.7f, 1.f),
             .velocity = { magnitude * cosf(angle), magnitude * sinf(angle) },
-            .lifespan = randf(90.f, 110.f),
+            .lifespan = random(90.f, 110.f),
             .color = { color[0], color[1], color[2], color[3] },
         };
         arrpush(firework->particles, particle);

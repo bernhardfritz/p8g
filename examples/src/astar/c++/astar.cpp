@@ -1,8 +1,8 @@
 #include "astar.hpp"
 
-#include <queue>
-#include <cmath>
 #include <algorithm>
+#include <cmath>
+#include <queue>
 
 struct Node {
     int x, y;
