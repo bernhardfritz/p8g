@@ -71,11 +71,43 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_fill
 
 /*
  * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    image
+ * Signature: (Lio/github/bernhardfritz/p8g/Image;FFFFFFFF)V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_image
+  (JNIEnv *, jclass, jobject, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    imageMode
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_imageMode
+  (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
  * Method:    line
  * Signature: (FFFF)V
  */
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_line
   (JNIEnv *, jclass, jfloat, jfloat, jfloat, jfloat);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    loadImage
+ * Signature: (Ljava/lang/String;)Lio/github/bernhardfritz/p8g/Image;
+ */
+JNIEXPORT jobject JNICALL Java_io_github_bernhardfritz_p8g_Sketch_loadImage
+  (JNIEnv *, jobject, jstring);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    millis
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_io_github_bernhardfritz_p8g_Sketch_millis
+  (JNIEnv *, jclass);
 
 /*
  * Class:     io_github_bernhardfritz_p8g_Sketch
@@ -103,6 +135,22 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_noStroke
 
 /*
  * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    noTint
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_noTint
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    peekColorMode
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_io_github_bernhardfritz_p8g_Sketch_peekColorMode
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
  * Method:    point
  * Signature: (FF)V
  */
@@ -124,6 +172,22 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_pop
  */
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_push
   (JNIEnv *, jclass);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    random
+ * Signature: (FF)F
+ */
+JNIEXPORT jfloat JNICALL Java_io_github_bernhardfritz_p8g_Sketch_random
+  (JNIEnv *, jclass, jfloat, jfloat);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    randomSeed
+ * Signature: (I)V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_randomSeed
+  (JNIEnv *, jclass, jint);
 
 /*
  * Class:     io_github_bernhardfritz_p8g_Sketch
@@ -196,6 +260,14 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_stroke
  */
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_strokeWeight
   (JNIEnv *, jclass, jfloat);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    tint
+ * Signature: ([F)V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_tint
+  (JNIEnv *, jclass, jfloatArray);
 
 /*
  * Class:     io_github_bernhardfritz_p8g_Sketch

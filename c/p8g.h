@@ -18,13 +18,29 @@ typedef enum {
 } p8g_ellipse_mode_t;
 void p8g_ellipse_mode(p8g_ellipse_mode_t mode);
 void p8g_fill(float color[4]);
+typedef struct {
+    int _index;
+    int width, height;
+} p8g_image_t;
+void p8g_image(p8g_image_t img, float dx, float dy, float dw, float dh, float sx, float sy, float sw, float sh);
+typedef enum {
+    P8G_IMAGE_MODE_CORNER,
+    P8G_IMAGE_MODE_CORNERS,
+    P8G_IMAGE_MODE_RADIUS,
+    P8G_IMAGE_MODE_CENTER,
+} p8g_image_mode_t;
+void p8g_image_mode(p8g_image_mode_t mode);
 void p8g_line(float x1, float y1, float x2, float y2);
+p8g_image_t p8g_load_image(const char* filename);
 void p8g_no_fill(void);
 void p8g_no_smooth(void);
 void p8g_no_stroke(void);
+void p8g_no_tint(void);
 void p8g_point(float x, float y);
 void p8g_pop(void);
 void p8g_push(void);
+float p8g_random(float min, float max);
+void p8g_random_seed(int seed);
 void p8g_rect(float x, float y, float w, float h);
 typedef enum {
     P8G_RECT_MODE_CORNER,
@@ -52,10 +68,30 @@ void p8g_scale(float x, float y);
 void p8g_smooth(void);
 void p8g_stroke(float color[4]);
 void p8g_stroke_weight(float weight);
+float p8g_time(void);
+void p8g_tint(float color[4]);
 void p8g_translate(float x, float y);
 void p8g_triangle(float x1, float y1, float x2, float y2, float x3, float y3);
 
 #ifdef USING_NAMESPACE_P8G
+typedef struct {
+    int _index;
+    int p8g_width, p8g_height;
+} Image;
+static Image _to_image(p8g_image_t img) {
+    return (Image) {
+        ._index = img._index,
+        .p8g_width = img.width,
+        .p8g_height = img.height,
+    };
+}
+static p8g_image_t _to_p8g_image_t(Image img) {
+    return (p8g_image_t) {
+        ._index = img._index,
+        .width = img.p8g_width,
+        .height = img.p8g_height,
+    };
+}
 extern int p8g_width, p8g_height;
 extern int p8g_key_code;
 extern int p8g_key_is_pressed;
@@ -63,6 +99,7 @@ extern float p8g_mouse_x, p8g_mouse_y;
 extern int p8g_mouse_button;
 extern int p8g_mouse_is_pressed;
 extern float p8g_delta_time;
+p8g_color_mode_t p8g_peek_color_mode();
 
 extern void draw(void);
 static void _draw(float delta_time) {
@@ -110,18 +147,19 @@ static void _p8g_mouse_wheel(float delta_x, float delta_y) {
 }
 #define mouseWheel(delta) p8g_mouse_wheel(delta)
 #define P8G_ARG_2(_1, _2, N, ...) N
+#define P8G_ARG_3(_1, _2, _3, N, ...) N
 #define P8G_ARG_4(_1, _2, _3, _4, N, ...) N
+#define P8G_ARG_9(_1, _2, _3, _4, _5, _6, _7, _8, _9, N, ...) N
 static float _buf[4];
-static p8g_color_mode_t _color_mode;
 static float* _color1f(float gray) {
     _buf[0] = gray;
     _buf[1] = gray;
     _buf[2] = gray;
-    _buf[3] = _color_mode == P8G_COLOR_MODE_RGB ? 255.f : 1.f;
+    _buf[3] = p8g_peek_color_mode() == P8G_COLOR_MODE_RGB ? 255.f : 1.f;
     return _buf;
 }
 #define _color2f(gray, alpha) (float[]) { gray, gray, gray, alpha }
-#define _color3f(v1, v2, v3) (float[]) { v1, v2, v3, _color_mode == P8G_COLOR_MODE_RGB ? 255.f : 1.f }
+#define _color3f(v1, v2, v3) (float[]) { v1, v2, v3, p8g_peek_color_mode() == P8G_COLOR_MODE_RGB ? 255.f : 1.f }
 #define _color4f(v1, v2, v3, alpha) (float[]) { v1, v2, v3, alpha }
 static float* _color4fv(float color[4]) {
     return color;
@@ -137,21 +175,41 @@ static float* _color4fv(float color[4]) {
 #define HSL 2
 #define applyMatrix(a, b, c, d, e, f) p8g_apply_matrix(a, b, c, d, e, f)
 #define background(...) p8g_background(_color(__VA_ARGS__))
-#define colorMode(mode) \
-    do { \
-        _color_mode = mode; \
-        p8g_color_mode(mode); \
-    } while (0)
+#define colorMode(mode) p8g_color_mode(mode)
 #define ellipse(x, y, w, h) p8g_ellipse(x, y, w, h)
 #define ellipseMode(mode) p8g_ellipse_mode(mode)
 #define fill(...) p8g_fill(_color(__VA_ARGS__))
+#define _image1(img)
+#define _image2(img, x)
+#define _image3(img, x, y) p8g_image(_to_p8g_image_t(img), x, y, img.width, img.height, 0, 0, img.width, img.height)
+#define _image4(img, x, y, w) p8g_image(_to_p8g_image_t(img), x, y, w, img.height, 0, 0, img.width, img.height)
+#define _image5(img, x, y, w, h) p8g_image(_to_p8g_image_t(img), x, y, w, h, 0, 0, img.width, img.height)
+#define _image6(img, dx, dy, dw, dh, sx) p8g_image(_to_p8g_image_t(img), dx, dy, dw, dh, sx, 0, img.width, img.height)
+#define _image7(img, dx, dy, dw, dh, sx, sy) p8g_image(_to_p8g_image_t(img), dx, dy, dw, dh, sx, sy, img.width, img.height)
+#define _image8(img, dx, dy, dw, dh, sx, sy, sw) p8g_image(_to_p8g_image_t(img), dx, dy, dw, dh, sx, sy, sw, img.height)
+#define _image9(img, dx, dy, dw, dh, sx, sy, sw, sh) p8g_image(_to_p8g_image_t(img), dx, dy, dw, dh, sx, sy, sw, sh)
+#define image(...) P8G_ARG_9(__VA_ARGS__, _image9, _image8, _image7, _image6, _image5, _image4, _image3, _image2, _image1)(__VA_ARGS__)
+#define imageMode(mode) p8g_image_mode(mode)
 #define line(x1, y1, x2, y2) p8g_line(x1, y1, x2, y2)
+#define loadImage(filename) _to_image(p8g_load_image(filename))
+static int p8g_millis() {
+    return p8g_time() * 1000.f;
+}
+#define millis() p8g_millis()
 #define noFill() p8g_no_fill()
 #define noSmooth() p8g_no_smooth()
 #define noStroke() p8g_no_stroke()
+#define noTint() p8g_no_tint()
 #define point(x, y) p8g_point(x, y)
 #define pop() p8g_pop()
 #define push() p8g_push()
+static float _random0f() {
+    return p8g_random(0.f, 1.f);
+}
+static float _random1f(float max) {
+    return p8g_random(0.f, max);
+}
+#define random(...) P8G_ARG_3(_1, ##__VA_ARGS__, p8g_random, _random1f, _random0f)(__VA_ARGS__)
 #define rect(x, y, w, h) p8g_rect(x, y, w, h)
 #define rectMode(mode) p8g_rect_mode(mode)
 #define resetMatrix() p8g_reset_matrix()
@@ -174,6 +232,7 @@ static void _run(p8g_sketch_t sketch) {
 #define smooth() p8g_smooth()
 #define stroke(...) p8g_stroke(_color(__VA_ARGS__))
 #define strokeWeight(weight) p8g_stroke_weight(weight)
+#define tint(...) p8g_tint(_color(__VA_ARGS__))
 #define translate(x, y) p8g_translate(x, y)
 #define triangle(x1, y1, x2, y2, x3, y3) p8g_triangle(x1, y1, x2, y2, x3, y3)
 #define width p8g_width

@@ -6,7 +6,6 @@
 #include "p8g.h"
 
 #include "quadtree.h"
-#include "random.h"
 
 #define HALF_DIMENSION 256
 
@@ -56,8 +55,8 @@ void mouseMoved() {
 int main() {
     vec2 center = { HALF_DIMENSION, HALF_DIMENSION };
     for (int i = 0; i < 1000; i++) {
-        float r = randf(0.f, HALF_DIMENSION);
-        float phi = randf(0.f, 2.f * M_PI);
+        float r = random(HALF_DIMENSION);
+        float phi = random(2.f * M_PI);
         vec2 v = { cosf(phi), sinf(phi) };
         vec2_scale(v, v, r);
         vec2_add(v, center, v);

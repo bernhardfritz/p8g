@@ -1,8 +1,8 @@
 #ifndef ASTAR_HPP
 #define ASTAR_HPP
 
-#include <vector>
 #include <utility>
+#include <vector>
 
 class AStar {
 public:

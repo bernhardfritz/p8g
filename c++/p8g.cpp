@@ -1,7 +1,8 @@
 #include "p8g.hpp"
 
+#include <memory>
+
 namespace {
-int colorMode;
 void draw(float deltaTime) {
     p8g::deltaTime = deltaTime * 1000.f;
     p8g::draw();
@@ -57,7 +58,7 @@ void p8g::applyMatrix(float a, float b, float c, float d, float e, float f) {
 }
 
 void p8g::background(float gray) {
-    float background[] = { gray, gray, gray, ::colorMode == p8g::RGB ? 255.f : 1.f };
+    float background[] = { gray, gray, gray, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
     p8g_background(background);
 }
 
@@ -67,7 +68,7 @@ void p8g::background(float gray, float alpha) {
 }
 
 void p8g::background(float v1, float v2, float v3) {
-    float background[] = { v1, v2, v3, ::colorMode == p8g::RGB ? 255.f : 1.f };
+    float background[] = { v1, v2, v3, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
     p8g_background(background);
 }
 
@@ -93,7 +94,7 @@ void p8g::ellipseMode(int mode) {
 }
 
 void p8g::fill(float gray) {
-    float fill[] = { gray, gray, gray, ::colorMode == p8g::RGB ? 255.f : 1.f };
+    float fill[] = { gray, gray, gray, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
     p8g_fill(fill);
 }
 
@@ -103,7 +104,7 @@ void p8g::fill(float gray, float alpha) {
 }
 
 void p8g::fill(float v1, float v2, float v3) {
-    float fill[] = { v1, v2, v3, ::colorMode == p8g::RGB ? 255.f : 1.f };
+    float fill[] = { v1, v2, v3, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
     p8g_fill(fill);
 }
 
@@ -116,8 +117,48 @@ void p8g::fill(float color[4]) {
     p8g_fill(color);
 }
 
+void p8g::image(p8g::Image img, float x, float y) {
+    p8g_image(img, x, y, img.width, img.height, 0, 0, img.width, img.height);
+}
+
+void p8g::image(p8g::Image img, float x, float y, float w) {
+    p8g_image(img, x, y, w, img.height, 0, 0, img.width, img.height);
+}
+
+void p8g::image(p8g::Image img, float x, float y, float w, float h) {
+    p8g_image(img, x, y, w, h, 0, 0, img.width, img.height);
+}
+
+void p8g::image(p8g::Image img, float dx, float dy, float dw, float dh, float sx) {
+    p8g_image(img, dx, dy, dw, dh, sx, 0, img.width, img.height);
+}
+
+void p8g::image(p8g::Image img, float dx, float dy, float dw, float dh, float sx, float sy) {
+    p8g_image(img, dx, dy, dw, dh, sx, sy, img.width, img.height);
+}
+
+void p8g::image(p8g::Image img, float dx, float dy, float dw, float dh, float sx, float sy, float sw) {
+    p8g_image(img, dx, dy, dw, dh, sx, sy, sw, img.height);
+}
+
+void p8g::image(p8g::Image img, float dx, float dy, float dw, float dh, float sx, float sy, float sw, float sh) {
+    p8g_image(img, dx, dy, dw, dh, sx, sy, sw, sh);
+}
+
+void p8g::imageMode(int mode) {
+    p8g_image_mode((p8g_image_mode_t) mode);
+}
+
 void p8g::line(float x1, float y1, float x2, float y2) {
     p8g_line(x1, y1, x2, y2);
+}
+
+p8g::Image p8g::loadImage(std::string filename) {
+    return p8g_load_image(filename.c_str());
+}
+
+int p8g::millis() {
+    return p8g_time() * 1000.f;
 }
 
 void p8g::noFill() {
@@ -132,6 +173,10 @@ void p8g::noStroke() {
     p8g_no_stroke();
 }
 
+void p8g::noTint() {
+    p8g_no_tint();
+}
+
 void p8g::point(float x, float y) {
     p8g_point(x, y);
 }
@@ -142,6 +187,22 @@ void p8g::pop() {
 
 void p8g::push() {
     p8g_push();
+}
+
+float p8g::random() {
+    return p8g_random(0.f, 1.f);
+}
+
+float p8g::random(float max) {
+    return p8g_random(0.f, max);
+}
+
+float p8g::random(float min, float max) {
+    return p8g_random(min, max);
+}
+
+void p8g::randomSeed(int seed) {
+    p8g_random_seed(seed);
 }
 
 void p8g::rect(float x, float y, float w, float h) {
@@ -218,7 +279,7 @@ void p8g::smooth() {
 }
 
 void p8g::stroke(float gray) {
-    float stroke[] = { gray, gray, gray, ::colorMode == p8g::RGB ? 255.f : 1.f };
+    float stroke[] = { gray, gray, gray, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
     p8g_stroke(stroke);
 }
 
@@ -228,7 +289,7 @@ void p8g::stroke(float gray, float alpha) {
 }
 
 void p8g::stroke(float v1, float v2, float v3) {
-    float stroke[] = { v1, v2, v3, ::colorMode == p8g::RGB ? 255.f : 1.f };
+    float stroke[] = { v1, v2, v3, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
     p8g_stroke(stroke);
 }
 
@@ -243,6 +304,30 @@ void p8g::stroke(float color[4]) {
 
 void p8g::strokeWeight(float weight) {
     p8g_stroke_weight(weight);
+}
+
+void p8g::tint(float gray) {
+    float tint[] = { gray, gray, gray, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
+    p8g_tint(tint);
+}
+
+void p8g::tint(float gray, float alpha) {
+    float tint[] = { gray, gray, gray, alpha };
+    p8g_tint(tint);
+}
+
+void p8g::tint(float v1, float v2, float v3) {
+    float tint[] = { v1, v2, v3, p8g_peek_color_mode() == p8g::RGB ? 255.f : 1.f };
+    p8g_tint(tint);
+}
+
+void p8g::tint(float v1, float v2, float v3, float alpha) {
+    float tint[] = { v1, v2, v3, alpha };
+    p8g_tint(tint);
+}
+
+void p8g::tint(float color[4]) {
+    p8g_tint(color);
 }
 
 void p8g::translate(float x, float y) {

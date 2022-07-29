@@ -1,6 +1,7 @@
 #include "io_github_bernhardfritz_p8g_Sketch.h"
 
 #include <p8g.h>
+p8g_color_mode_t p8g_peek_color_mode();
 
 static JavaVM *jvm;
 static jobject sketch;
@@ -57,7 +58,6 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_background(JNIEnv
 }
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_colorMode(JNIEnv *env, jclass clazz, jint mode) {
-    (*env)->SetStaticIntField(env, sketchClass, (*env)->GetStaticFieldID(env, sketchClass, "colorMode", "I"), mode);
     p8g_color_mode(mode);
 }
 
@@ -73,8 +73,36 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_fill(JNIEnv *env,
     p8g_fill((*env)->GetFloatArrayElements(env, color, NULL));
 }
 
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_image(JNIEnv *env, jclass clazz, jobject img, jfloat dx, jfloat dy, jfloat dw, jfloat dh, jfloat sx, jfloat sy, jfloat sw, jfloat sh) {
+    if (!img) {
+        return;
+    }
+    jclass imageClass = (*env)->GetObjectClass(env, img);
+    jint imageIndex = (*env)->GetIntField(env, img, (*env)->GetFieldID(env, imageClass, "index", "I"));
+    jint imageWidth = (*env)->GetIntField(env, img, (*env)->GetFieldID(env, imageClass, "width", "I"));
+    jint imageHeight = (*env)->GetIntField(env, img, (*env)->GetFieldID(env, imageClass, "height", "I"));
+    p8g_image_t image = { imageIndex, imageWidth, imageHeight };
+    p8g_image(image, dx, dy, dw, dh, sx, sy, sw, sh);
+}
+
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_imageMode(JNIEnv *env, jclass clazz, jint mode) {
+    p8g_image_mode(mode);
+}
+
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_line(JNIEnv *env, jclass clazz, jfloat x1, jfloat y1, jfloat x2, jfloat y2) {
     p8g_line(x1, y1, x2, y2);
+}
+
+JNIEXPORT jobject JNICALL Java_io_github_bernhardfritz_p8g_Sketch_loadImage(JNIEnv *env, jobject self, jstring filename) {
+    const char* nativeFilename = (*env)->GetStringUTFChars(env, filename, NULL);
+    p8g_image_t image = p8g_load_image(nativeFilename);
+    (*env)->ReleaseStringUTFChars(env, filename, nativeFilename);
+    jclass imageClass = (*env)->FindClass(env, "io/github/bernhardfritz/p8g/Image");
+    return (*env)->NewObject(env, imageClass, (*env)->GetMethodID(env, imageClass, "<init>", "(III)V"), image._index, image.width, image.height);
+}
+
+JNIEXPORT jint JNICALL Java_io_github_bernhardfritz_p8g_Sketch_millis(JNIEnv *env, jclass clazz) {
+    return p8g_time() * 1000.f;
 }
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_noFill(JNIEnv *env, jclass clazz) {
@@ -89,6 +117,14 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_noStroke(JNIEnv *
     p8g_no_stroke();
 }
 
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_noTint(JNIEnv *env, jclass clazz) {
+    p8g_no_tint();
+}
+
+JNIEXPORT jint JNICALL Java_io_github_bernhardfritz_p8g_Sketch_peekColorMode(JNIEnv *env, jclass clazz) {
+    return p8g_peek_color_mode();
+}
+
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_point(JNIEnv *env, jclass clazz, jfloat x, jfloat y) {
     p8g_point(x, y);
 }
@@ -99,6 +135,14 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_pop(JNIEnv *env, 
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_push(JNIEnv *env, jclass clazz) {
     p8g_push();
+}
+
+JNIEXPORT jfloat JNICALL Java_io_github_bernhardfritz_p8g_Sketch_random(JNIEnv *env, jclass clazz, jfloat min, jfloat max) {
+    return p8g_random(min, max);
+}
+
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_randomSeed(JNIEnv *env, jclass clazz, jint seed) {
+    p8g_random_seed(seed);
 }
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_rect(JNIEnv * env, jclass clazz, jfloat x, jfloat y, jfloat w, jfloat h) {
@@ -154,6 +198,10 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_stroke(JNIEnv *en
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_strokeWeight(JNIEnv *env, jclass clazz, jfloat weight) {
     p8g_stroke_weight(weight);
+}
+
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_tint(JNIEnv *env, jclass clazz, jfloatArray color) {
+    p8g_tint((*env)->GetFloatArrayElements(env, color, NULL));
 }
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_translate(JNIEnv *env, jclass clazz, jfloat x, jfloat y) {
