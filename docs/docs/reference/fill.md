@@ -14,6 +14,10 @@ fill(v1, v2, v3, [alpha])
 fill(gray, [alpha])
 ```
 
+```c
+fill(values)
+```
+
 ## Parameters
 
 | Parameter | Description                                                                             |
@@ -23,3 +27,4 @@ fill(gray, [alpha])
 | v3        | blue or brightness value (depending on the current color mode)                          |
 | alpha     | opacity of the background relative to current color range (default is 0-255) (Optional) |
 | gray      | specifies a value between white and black                                               |
+| values    | an array containing the components of the color                                         |

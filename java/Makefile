@@ -41,11 +41,11 @@ $(OBJS): | $(BUILD_DIR)
 $(BUILD_DIR):
 	$(MKDIR_P) $(BUILD_DIR)
 
-src/main/c/io_github_bernhardfritz_p8g_Sketch.h: src/main/java/io/github/bernhardfritz/p8g/Sketch.java
-	javac -d $(BUILD_DIR) -h src/main/c src/main/java/io/github/bernhardfritz/p8g/Sketch.java
+src/main/c/io_github_bernhardfritz_p8g_Sketch.h: src/main/java/io/github/bernhardfritz/p8g/Sketch.java src/main/java/io/github/bernhardfritz/p8g/Image.java
+	javac -d $(BUILD_DIR) -h src/main/c src/main/java/io/github/bernhardfritz/p8g/Sketch.java src/main/java/io/github/bernhardfritz/p8g/Image.java
 
-$(BUILD_DIR)/p8g.jar: src/main/java/io/github/bernhardfritz/p8g/Sketch.java $(BUILD_DIR)/io_github_bernhardfritz_p8g_Sketch.dll $(BUILD_DIR)/libio_github_bernhardfritz_p8g_Sketch.dylib $(BUILD_DIR)/libio_github_bernhardfritz_p8g_Sketch.so
-	javac -d $(BUILD_DIR) src/main/java/io/github/bernhardfritz/p8g/Sketch.java; \
+$(BUILD_DIR)/p8g.jar: src/main/java/io/github/bernhardfritz/p8g/Sketch.java src/main/java/io/github/bernhardfritz/p8g/Image.java $(BUILD_DIR)/io_github_bernhardfritz_p8g_Sketch.dll $(BUILD_DIR)/libio_github_bernhardfritz_p8g_Sketch.dylib $(BUILD_DIR)/libio_github_bernhardfritz_p8g_Sketch.so
+	javac -d $(BUILD_DIR) src/main/java/io/github/bernhardfritz/p8g/Sketch.java src/main/java/io/github/bernhardfritz/p8g/Image.java; \
 	cp $(P8G_DIR)/glfw3.dll $(BUILD_DIR); \
 	cp $(P8G_DIR)/libglfw.3.dylib $(BUILD_DIR); \
 	cp $(P8G_DIR)/libglfw.so $(BUILD_DIR); \

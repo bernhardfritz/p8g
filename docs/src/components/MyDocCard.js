@@ -60,6 +60,27 @@ function CardLink({item}) {
   );
 }
 
+function CardImage({item}) {
+  const doc = useDocById(item.docId ?? undefined);
+  return (
+    <CardContainer href={item.href}>
+      <div className={styles.flexGap}>
+        <div className={styles.imgWrapper}>
+          {item.icon}
+        </div>
+        <div className={styles.overflowHidden}>
+          <h2 className={clsx('text--truncate', styles.cardTitle)} title={item.label}>
+            {item.label}
+          </h2>
+          <div className={clsx('text--truncate', styles.cardDescription)} title={doc?.description}>
+            {doc?.description}
+          </div>
+        </div>
+      </div>
+    </CardContainer>
+  );
+}
+
 export default function MyDocCard({item}) {
   switch (item.type) {
     case 'link':
@@ -67,6 +88,9 @@ export default function MyDocCard({item}) {
 
     case 'category':
       return <CardCategory item={item} />;
+
+    case 'image':
+      return <CardImage item={item} />;
 
     default:
       return <CardLayout href={item.href} icon={item.icon} title={item.title} description={item.description} />;

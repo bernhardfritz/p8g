@@ -48,11 +48,6 @@ export const Panel = ({children}) => (
         <a href="/docs/reference/translate">translate</a>
     </Panel>
     <Panel>
-        <h2>Structure</h2>
-        <a href="/docs/reference/pop">pop</a>
-        <a href="/docs/reference/push">push</a>
-    </Panel>
-    <Panel>
         <h2>Events</h2>
         <a href="/docs/reference/keyCode">keyCode</a>
         <a href="/docs/reference/keyIsPressed">keyIsPressed</a>
@@ -66,7 +61,27 @@ export const Panel = ({children}) => (
         <a href="/docs/reference/mouseWheel">mouseWheel</a>
     </Panel>
     <Panel>
-        <h2>Environment</h2>
+        <h2>Image</h2>
+        <a href="/docs/reference/image">image</a>
+        <a href="/docs/reference/imageMode">imageMode</a>
+        <a href="/docs/reference/image_">Image</a>
+        <a href="/docs/reference/loadImage">loadImage</a>
+        <a href="/docs/reference/noTint">noTint</a>
+        <a href="/docs/reference/tint">tint</a>
+    </Panel>
+    <Panel>
+        <h2>Time</h2>
         <a href="/docs/reference/deltaTime">deltaTime</a>
+        <a href="/docs/reference/millis">millis</a>
+    </Panel>
+    <Panel>
+        <h2>State</h2>
+        <a href="/docs/reference/pop">pop</a>
+        <a href="/docs/reference/push">push</a>
+    </Panel>
+    <Panel>
+        <h2>Random</h2>
+        <a href="/docs/reference/random">random</a>
+        <a href="/docs/reference/randomSeed">randomSeed</a>
     </Panel>
 </div>

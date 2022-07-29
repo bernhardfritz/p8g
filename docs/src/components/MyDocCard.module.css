@@ -34,3 +34,21 @@ html[data-theme='dark'] .cardContainer.cardContainerLink:hover {
   font-size: 0.8rem;
   min-height: 0.8rem;
 }
+
+.flexGap {
+  display: flex;
+  gap: 12px;
+}
+
+.imgWrapper {
+  min-width: 64px;
+  text-align: center;
+}
+
+.imgWrapper img {
+  height: 64px;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}

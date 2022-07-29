@@ -6,7 +6,7 @@ Modifies the location from which rectangles are drawn by changing the way in whi
 
 The default mode is `CORNER`, which interprets the first two parameters as the upper-left corner of the shape, while the third and fourth parameters are its width and height.
 
-`rectMode(CORNERS)` interprets the first two parameters as the location of one of the corners, and the third and fourth parameters as the location of the diagonally opposite corner. Note, the rectangle is drawn between the coordinates, so it is not neccesary that the first corner be the upper left corner.
+`rectMode(CORNERS)` interprets the first two parameters as the location of one of the corners, and the third and fourth parameters as the location of the diagonally opposite corner. Note, the rectangle is drawn between the coordinates, so it is not necessary that the first corner be the upper left corner.
 
 `rectMode(CENTER)` interprets the first two parameters as the shape's center point, while the third and fourth parameters are its width and height.
 

@@ -46,9 +46,15 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'get-started/index',
+            docId: 'get-started',
             position: 'left',
             label: 'Docs',
+          },
+          {
+            to: '/examples',
+            position: 'left',
+            label: 'Examples',
+            activeBaseRegex: '/examples/',
           },
           {
             href: 'https://github.com/bernhardfritz/p8g',
@@ -63,6 +69,11 @@ const config = {
             'aria-label': 'Discord',
           },
         ],
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
       },
       footer: {
         style: 'dark',
@@ -121,6 +132,17 @@ const config = {
           ]
         })
       }),
+      [
+        'content-docs',
+        /** @type {import('@docusaurus/plugin-content-docs').Options} */
+        {
+          id: 'examples',
+          path: 'examples',
+          routeBasePath: 'examples',
+          sidebarPath: require.resolve('./sidebarsExamples.js'),
+          editUrl: 'https://github.com/bernhardfritz/p8g/edit/master/docs',
+        },
+      ],
     ],
 };
 
