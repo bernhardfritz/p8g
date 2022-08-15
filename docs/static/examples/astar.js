@@ -2206,12 +2206,12 @@ var ASM_CONSTS = {
   }
   __ZN3p8g6mouseYE.stub = true;
 
-  function __ZN3p8g6randomEf(
+  function __ZN3p8g6randomEv(
   ) {
-  if (!Module['__ZN3p8g6randomEf']) abort("external symbol '_ZN3p8g6randomEf' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['__ZN3p8g6randomEf'].apply(null, arguments);
+  if (!Module['__ZN3p8g6randomEv']) abort("external symbol '_ZN3p8g6randomEv' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['__ZN3p8g6randomEv'].apply(null, arguments);
   }
-  __ZN3p8g6randomEf.stub = true;
+  __ZN3p8g6randomEv.stub = true;
 
   function __ZN3p8g6strokeEf(
   ) {
@@ -7676,6 +7676,13 @@ var ASM_CONSTS = {
   }
   _p8g_line.stub = true;
 
+  function _p8g_load_font(
+  ) {
+  if (!Module['_p8g_load_font']) abort("external symbol 'p8g_load_font' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_load_font'].apply(null, arguments);
+  }
+  _p8g_load_font.stub = true;
+
   function _p8g_load_image(
   ) {
   if (!Module['_p8g_load_image']) abort("external symbol 'p8g_load_image' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
@@ -7815,6 +7822,27 @@ var ASM_CONSTS = {
   return Module['_p8g_stroke_weight'].apply(null, arguments);
   }
   _p8g_stroke_weight.stub = true;
+
+  function _p8g_text(
+  ) {
+  if (!Module['_p8g_text']) abort("external symbol 'p8g_text' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_text'].apply(null, arguments);
+  }
+  _p8g_text.stub = true;
+
+  function _p8g_text_font(
+  ) {
+  if (!Module['_p8g_text_font']) abort("external symbol 'p8g_text_font' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_text_font'].apply(null, arguments);
+  }
+  _p8g_text_font.stub = true;
+
+  function _p8g_text_size(
+  ) {
+  if (!Module['_p8g_text_size']) abort("external symbol 'p8g_text_size' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_text_size'].apply(null, arguments);
+  }
+  _p8g_text_size.stub = true;
 
   function _p8g_time(
   ) {
@@ -8343,7 +8371,7 @@ var asmLibraryArg = {
   "_ZN3p8g6heightE": __ZN3p8g6heightE,
   "_ZN3p8g6mouseXE": __ZN3p8g6mouseXE,
   "_ZN3p8g6mouseYE": __ZN3p8g6mouseYE,
-  "_ZN3p8g6randomEf": __ZN3p8g6randomEf,
+  "_ZN3p8g6randomEv": __ZN3p8g6randomEv,
   "_ZN3p8g6strokeEf": __ZN3p8g6strokeEf,
   "_ZN3p8g6strokeEfff": __ZN3p8g6strokeEfff,
   "__cxa_allocate_exception": ___cxa_allocate_exception,
@@ -8402,6 +8430,12 @@ var _main = Module["_main"] = createExportWrapper("main");
 var ___errno_location = Module["___errno_location"] = createExportWrapper("__errno_location");
 
 /** @type {function(...*):?} */
+var _acos = Module["_acos"] = createExportWrapper("acos");
+
+/** @type {function(...*):?} */
+var _cos = Module["_cos"] = createExportWrapper("cos");
+
+/** @type {function(...*):?} */
 var _cosf = Module["_cosf"] = createExportWrapper("cosf");
 
 /** @type {function(...*):?} */
@@ -8429,7 +8463,13 @@ var _fgetc = Module["_fgetc"] = createExportWrapper("fgetc");
 var _fmaxf = Module["_fmaxf"] = createExportWrapper("fmaxf");
 
 /** @type {function(...*):?} */
+var _fmin = Module["_fmin"] = createExportWrapper("fmin");
+
+/** @type {function(...*):?} */
 var _fminf = Module["_fminf"] = createExportWrapper("fminf");
+
+/** @type {function(...*):?} */
+var _fmod = Module["_fmod"] = createExportWrapper("fmod");
 
 /** @type {function(...*):?} */
 var _fopen = Module["_fopen"] = createExportWrapper("fopen");
@@ -8487,6 +8527,9 @@ var _malloc = Module["_malloc"] = createExportWrapper("malloc");
 
 /** @type {function(...*):?} */
 var _free = Module["_free"] = createExportWrapper("free");
+
+/** @type {function(...*):?} */
+var _calloc = Module["_calloc"] = createExportWrapper("calloc");
 
 /** @type {function(...*):?} */
 var _realloc = Module["_realloc"] = createExportWrapper("realloc");

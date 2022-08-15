@@ -34,6 +34,10 @@ typedef enum {
 } p8g_image_mode_t;
 void p8g_image_mode(p8g_image_mode_t mode);
 void p8g_line(float x1, float y1, float x2, float y2);
+typedef struct {
+    int _index;
+} p8g_font_t;
+p8g_font_t p8g_load_font(const char* filename);
 p8g_image_t p8g_load_image(const char* filename);
 void p8g_no_fill(void);
 void p8g_no_smooth(void);
@@ -72,6 +76,9 @@ void p8g_scale(float x, float y);
 void p8g_smooth(void);
 void p8g_stroke(float color[4]);
 void p8g_stroke_weight(float weight);
+void p8g_text(const char* str, float x, float y);
+void p8g_text_font(p8g_font_t font);
+void p8g_text_size(float size);
 float p8g_time(void);
 void p8g_tint(float color[4]);
 void p8g_translate(float x, float y);
@@ -80,6 +87,7 @@ void p8g_triangle(float x1, float y1, float x2, float y2, float x3, float y3);
 
 namespace p8g {
 typedef p8g_image_t Image;
+typedef p8g_font_t Font;
 const int CORNER = 0;
 const int CORNERS = 1;
 const int RADIUS = 2;
@@ -125,6 +133,7 @@ void image(Image img, float dx, float dy, float dw, float dh, float sx, float sy
 void imageMode(int mode);
 void line(float x1, float y1, float x2, float y2);
 Image loadImage(std::string filename);
+Font loadFont(std::string filename);
 int millis(void);
 void noFill(void);
 void noSmooth(void);
@@ -153,6 +162,9 @@ void stroke(float v1, float v2, float v3);
 void stroke(float v1, float v2, float v3, float alpha);
 void stroke(float color[4]);
 void strokeWeight(float weight);
+void text(std::string str, float x, float y);
+void textFont(Font font);
+void textSize(float size);
 void tint(float gray);
 void tint(float gray, float alpha);
 void tint(float v1, float v2, float v3);

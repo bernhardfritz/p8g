@@ -157,6 +157,10 @@ p8g::Image p8g::loadImage(std::string filename) {
     return p8g_load_image(filename.c_str());
 }
 
+p8g::Font p8g::loadFont(std::string filename) {
+    return p8g_load_font(filename.c_str());
+}
+
 int p8g::millis() {
     return p8g_time() * 1000.f;
 }
@@ -304,6 +308,18 @@ void p8g::stroke(float color[4]) {
 
 void p8g::strokeWeight(float weight) {
     p8g_stroke_weight(weight);
+}
+
+void p8g::text(std::string str, float x, float y) {
+    p8g_text(str.c_str(), x, y);
+}
+
+void p8g::textFont(p8g::Font font) {
+    p8g_text_font(font);
+}
+
+void p8g::textSize(float size) {
+    p8g_text_size(size);
 }
 
 void p8g::tint(float gray) {

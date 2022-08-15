@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "p8g_typography.h"
-
 char buf[16] = "Press any key";
 
 void draw() {
     background(0);
-    text(buf, width / 2.f - (strlen(buf) * 5.f) / 2.f, height / 2.f - 4.5f);
+    fill(255);
+    textSize(64);
+    text(buf, width / 2.f - (strlen(buf) * 36.f) / 2.f, height / 2.f + 18.f);
 }
 
 void keyPressed() {

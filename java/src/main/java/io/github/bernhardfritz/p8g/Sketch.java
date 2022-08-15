@@ -119,6 +119,7 @@ public abstract class Sketch {
     public static native void imageMode(int mode);
     public static native void line(float x1, float y1, float x2, float y2);
     public native Image loadImage(String filename);
+    public native Font loadFont(String filename);
     public static native int millis();
     public static native void noFill();
     public static native void noSmooth();
@@ -172,6 +173,9 @@ public abstract class Sketch {
         stroke(new float[] { v1, v2, v3, alpha });
     }
     public static native void strokeWeight(float weight);
+    public static native void text(String str, float x, float y);
+    public static native void textFont(Font font);
+    public static native void textSize(float size);
     public static native void tint(float[] color);
     public static void tint(float gray) {
         tint(new float[] { gray, gray, gray, peekColorMode() == RGB ? 255.f : 1.f });

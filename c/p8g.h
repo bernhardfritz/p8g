@@ -31,6 +31,10 @@ typedef enum {
 } p8g_image_mode_t;
 void p8g_image_mode(p8g_image_mode_t mode);
 void p8g_line(float x1, float y1, float x2, float y2);
+typedef struct {
+    int _index;
+} p8g_font_t;
+p8g_font_t p8g_load_font(const char* filename);
 p8g_image_t p8g_load_image(const char* filename);
 void p8g_no_fill(void);
 void p8g_no_smooth(void);
@@ -68,6 +72,9 @@ void p8g_scale(float x, float y);
 void p8g_smooth(void);
 void p8g_stroke(float color[4]);
 void p8g_stroke_weight(float weight);
+void p8g_text(const char* str, float x, float y);
+void p8g_text_font(p8g_font_t font);
+void p8g_text_size(float size);
 float p8g_time(void);
 void p8g_tint(float color[4]);
 void p8g_translate(float x, float y);
@@ -92,6 +99,7 @@ static p8g_image_t _to_p8g_image_t(Image img) {
         .height = img.p8g_height,
     };
 }
+typedef p8g_font_t Font;
 extern int p8g_width, p8g_height;
 extern int p8g_key_code;
 extern int p8g_key_is_pressed;
@@ -191,6 +199,7 @@ static float* _color4fv(float color[4]) {
 #define image(...) P8G_ARG_9(__VA_ARGS__, _image9, _image8, _image7, _image6, _image5, _image4, _image3, _image2, _image1)(__VA_ARGS__)
 #define imageMode(mode) p8g_image_mode(mode)
 #define line(x1, y1, x2, y2) p8g_line(x1, y1, x2, y2)
+#define loadFont(filename) p8g_load_font(filename)
 #define loadImage(filename) _to_image(p8g_load_image(filename))
 static int p8g_millis() {
     return p8g_time() * 1000.f;
@@ -232,6 +241,9 @@ static void _run(p8g_sketch_t sketch) {
 #define smooth() p8g_smooth()
 #define stroke(...) p8g_stroke(_color(__VA_ARGS__))
 #define strokeWeight(weight) p8g_stroke_weight(weight)
+#define text(str, x, y) p8g_text(str, x, y)
+#define textFont(font) p8g_text_font(font)
+#define textSize(size) p8g_text_size(size)
 #define tint(...) p8g_tint(_color(__VA_ARGS__))
 #define translate(x, y) p8g_translate(x, y)
 #define triangle(x1, y1, x2, y2, x3, y3) p8g_triangle(x1, y1, x2, y2, x3, y3)

@@ -103,6 +103,14 @@ JNIEXPORT jobject JNICALL Java_io_github_bernhardfritz_p8g_Sketch_loadImage
 
 /*
  * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    loadFont
+ * Signature: (Ljava/lang/String;)Lio/github/bernhardfritz/p8g/Font;
+ */
+JNIEXPORT jobject JNICALL Java_io_github_bernhardfritz_p8g_Sketch_loadFont
+  (JNIEnv *, jobject, jstring);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
  * Method:    millis
  * Signature: ()I
  */
@@ -259,6 +267,30 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_stroke
  * Signature: (F)V
  */
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_strokeWeight
+  (JNIEnv *, jclass, jfloat);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    text
+ * Signature: (Ljava/lang/String;FF)V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_text
+  (JNIEnv *, jclass, jstring, jfloat, jfloat);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    textFont
+ * Signature: (Lio/github/bernhardfritz/p8g/Font;)V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_textFont
+  (JNIEnv *, jclass, jobject);
+
+/*
+ * Class:     io_github_bernhardfritz_p8g_Sketch
+ * Method:    textSize
+ * Signature: (F)V
+ */
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_textSize
   (JNIEnv *, jclass, jfloat);
 
 /*
