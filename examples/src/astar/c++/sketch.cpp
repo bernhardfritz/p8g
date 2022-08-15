@@ -19,7 +19,7 @@ int coordsToIndex(int x, int y) {
 void initCollisionGrid() {
     for (int y = 0; y < rows; y++) {
         for (int x = 0; x < cols; x++) {
-            collisionGrid[coordsToIndex(x, y)] = random() < 0.25f;
+            collisionGrid[coordsToIndex(x, y)] = p8g::random() < 0.25f;
         }
     }
     // ensure there is no collision at the start point

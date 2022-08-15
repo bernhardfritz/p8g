@@ -8167,6 +8167,12 @@ var ___errno_location = Module["___errno_location"] = createExportWrapper("__err
 var _abs = Module["_abs"] = createExportWrapper("abs");
 
 /** @type {function(...*):?} */
+var _acos = Module["_acos"] = createExportWrapper("acos");
+
+/** @type {function(...*):?} */
+var _cos = Module["_cos"] = createExportWrapper("cos");
+
+/** @type {function(...*):?} */
 var _memcpy = Module["_memcpy"] = createExportWrapper("memcpy");
 
 /** @type {function(...*):?} */
@@ -8197,7 +8203,13 @@ var _fgetc = Module["_fgetc"] = createExportWrapper("fgetc");
 var _fmaxf = Module["_fmaxf"] = createExportWrapper("fmaxf");
 
 /** @type {function(...*):?} */
+var _fmin = Module["_fmin"] = createExportWrapper("fmin");
+
+/** @type {function(...*):?} */
 var _fminf = Module["_fminf"] = createExportWrapper("fminf");
+
+/** @type {function(...*):?} */
+var _fmod = Module["_fmod"] = createExportWrapper("fmod");
 
 /** @type {function(...*):?} */
 var _fopen = Module["_fopen"] = createExportWrapper("fopen");
@@ -8252,6 +8264,9 @@ var _strtol = Module["_strtol"] = createExportWrapper("strtol");
 
 /** @type {function(...*):?} */
 var _ungetc = Module["_ungetc"] = createExportWrapper("ungetc");
+
+/** @type {function(...*):?} */
+var _calloc = Module["_calloc"] = createExportWrapper("calloc");
 
 /** @type {function(...*):?} */
 var _realloc = Module["_realloc"] = createExportWrapper("realloc");
