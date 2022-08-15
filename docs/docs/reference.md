@@ -70,6 +70,14 @@ export const Panel = ({children}) => (
         <a href="/docs/reference/tint">tint</a>
     </Panel>
     <Panel>
+        <h2>Typography</h2>
+        <a href="/docs/reference/font">Font</a>
+        <a href="/docs/reference/loadFont">loadFont</a>
+        <a href="/docs/reference/text">text</a>
+        <a href="/docs/reference/textFont">textFont</a>
+        <a href="/docs/reference/textSize">textSize</a>
+    </Panel>
+    <Panel>
         <h2>Time</h2>
         <a href="/docs/reference/deltaTime">deltaTime</a>
         <a href="/docs/reference/millis">millis</a>

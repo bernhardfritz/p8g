@@ -1510,7 +1510,7 @@ var ASM_CONSTS = {
       }
     }
   
-  var ___heap_base = 5258416;
+  var ___heap_base = 5255184;
   function getMemory(size) {
       // After the runtime is initialized, we must only use sbrk() normally.
       if (runtimeInitialized)
@@ -2153,7 +2153,7 @@ var ASM_CONSTS = {
   var ___memory_base = new WebAssembly.Global({'value': 'i32', 'mutable': false}, 1024);
   Module["___memory_base"] = ___memory_base;
 
-  var ___stack_pointer = new WebAssembly.Global({'value': 'i32', 'mutable': true}, 5258416);
+  var ___stack_pointer = new WebAssembly.Global({'value': 'i32', 'mutable': true}, 5255184);
   Module["___stack_pointer"] = ___stack_pointer;
 
   function setErrNo(value) {
@@ -7428,6 +7428,13 @@ var ASM_CONSTS = {
   }
   _p8g_delta_time.stub = true;
 
+  function _p8g_fill(
+  ) {
+  if (!Module['_p8g_fill']) abort("external symbol 'p8g_fill' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_fill'].apply(null, arguments);
+  }
+  _p8g_fill.stub = true;
+
   function _p8g_height(
   ) {
   if (!Module['_p8g_height']) abort("external symbol 'p8g_height' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
@@ -7512,40 +7519,12 @@ var ASM_CONSTS = {
   }
   _p8g_mouse_y.stub = true;
 
-  function _p8g_no_stroke(
-  ) {
-  if (!Module['_p8g_no_stroke']) abort("external symbol 'p8g_no_stroke' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_no_stroke'].apply(null, arguments);
-  }
-  _p8g_no_stroke.stub = true;
-
   function _p8g_peek_color_mode(
   ) {
   if (!Module['_p8g_peek_color_mode']) abort("external symbol 'p8g_peek_color_mode' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
   return Module['_p8g_peek_color_mode'].apply(null, arguments);
   }
   _p8g_peek_color_mode.stub = true;
-
-  function _p8g_pop(
-  ) {
-  if (!Module['_p8g_pop']) abort("external symbol 'p8g_pop' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_pop'].apply(null, arguments);
-  }
-  _p8g_pop.stub = true;
-
-  function _p8g_push(
-  ) {
-  if (!Module['_p8g_push']) abort("external symbol 'p8g_push' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_push'].apply(null, arguments);
-  }
-  _p8g_push.stub = true;
-
-  function _p8g_rect(
-  ) {
-  if (!Module['_p8g_rect']) abort("external symbol 'p8g_rect' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_rect'].apply(null, arguments);
-  }
-  _p8g_rect.stub = true;
 
   function _p8g_run(
   ) {
@@ -7554,12 +7533,19 @@ var ASM_CONSTS = {
   }
   _p8g_run.stub = true;
 
-  function _p8g_translate(
+  function _p8g_text(
   ) {
-  if (!Module['_p8g_translate']) abort("external symbol 'p8g_translate' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_translate'].apply(null, arguments);
+  if (!Module['_p8g_text']) abort("external symbol 'p8g_text' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_text'].apply(null, arguments);
   }
-  _p8g_translate.stub = true;
+  _p8g_text.stub = true;
+
+  function _p8g_text_size(
+  ) {
+  if (!Module['_p8g_text_size']) abort("external symbol 'p8g_text_size' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['_p8g_text_size'].apply(null, arguments);
+  }
+  _p8g_text_size.stub = true;
 
   function _p8g_width(
   ) {
@@ -8076,6 +8062,7 @@ var asmLibraryArg = {
   "memory": wasmMemory,
   "p8g_background": _p8g_background,
   "p8g_delta_time": _p8g_delta_time,
+  "p8g_fill": _p8g_fill,
   "p8g_height": _p8g_height,
   "p8g_key_code": _p8g_key_code,
   "p8g_key_is_pressed": _p8g_key_is_pressed,
@@ -8088,13 +8075,10 @@ var asmLibraryArg = {
   "p8g_mouse_wheel": _p8g_mouse_wheel,
   "p8g_mouse_x": _p8g_mouse_x,
   "p8g_mouse_y": _p8g_mouse_y,
-  "p8g_no_stroke": _p8g_no_stroke,
   "p8g_peek_color_mode": _p8g_peek_color_mode,
-  "p8g_pop": _p8g_pop,
-  "p8g_push": _p8g_push,
-  "p8g_rect": _p8g_rect,
   "p8g_run": _p8g_run,
-  "p8g_translate": _p8g_translate,
+  "p8g_text": _p8g_text,
+  "p8g_text_size": _p8g_text_size,
   "p8g_width": _p8g_width,
   "setTempRet0": _setTempRet0
 };
@@ -8119,6 +8103,12 @@ var ___errno_location = Module["___errno_location"] = createExportWrapper("__err
 
 /** @type {function(...*):?} */
 var _abs = Module["_abs"] = createExportWrapper("abs");
+
+/** @type {function(...*):?} */
+var _acos = Module["_acos"] = createExportWrapper("acos");
+
+/** @type {function(...*):?} */
+var _cos = Module["_cos"] = createExportWrapper("cos");
 
 /** @type {function(...*):?} */
 var _cosf = Module["_cosf"] = createExportWrapper("cosf");
@@ -8154,7 +8144,13 @@ var _fgetc = Module["_fgetc"] = createExportWrapper("fgetc");
 var _fmaxf = Module["_fmaxf"] = createExportWrapper("fmaxf");
 
 /** @type {function(...*):?} */
+var _fmin = Module["_fmin"] = createExportWrapper("fmin");
+
+/** @type {function(...*):?} */
 var _fminf = Module["_fminf"] = createExportWrapper("fminf");
+
+/** @type {function(...*):?} */
+var _fmod = Module["_fmod"] = createExportWrapper("fmod");
 
 /** @type {function(...*):?} */
 var _fopen = Module["_fopen"] = createExportWrapper("fopen");
@@ -8214,6 +8210,9 @@ var _malloc = Module["_malloc"] = createExportWrapper("malloc");
 var _free = Module["_free"] = createExportWrapper("free");
 
 /** @type {function(...*):?} */
+var _calloc = Module["_calloc"] = createExportWrapper("calloc");
+
+/** @type {function(...*):?} */
 var _realloc = Module["_realloc"] = createExportWrapper("realloc");
 
 /** @type {function(...*):?} */
@@ -8254,7 +8253,7 @@ var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
 /** @type {function(...*):?} */
 var _orig$time = Module["_orig$time"] = createExportWrapper("orig$time");
 
-var _stderr = Module['_stderr'] = 14800;
+var _stderr = Module['_stderr'] = 11576;
 
 
 
@@ -8668,7 +8667,7 @@ function stackCheckInit() {
   // This is normally called automatically during __wasm_call_ctors but need to
   // get these values before even running any of the ctors so we call it redundantly
   // here.
-  _emscripten_stack_set_limits(5258416 , 15536);
+  _emscripten_stack_set_limits(5255184 , 12304);
   // TODO(sbc): Move writeStackCookie to native to to avoid this.
   writeStackCookie();
 }

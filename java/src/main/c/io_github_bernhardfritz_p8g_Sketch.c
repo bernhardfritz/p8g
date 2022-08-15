@@ -81,8 +81,7 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_image(JNIEnv *env
     jint imageIndex = (*env)->GetIntField(env, img, (*env)->GetFieldID(env, imageClass, "index", "I"));
     jint imageWidth = (*env)->GetIntField(env, img, (*env)->GetFieldID(env, imageClass, "width", "I"));
     jint imageHeight = (*env)->GetIntField(env, img, (*env)->GetFieldID(env, imageClass, "height", "I"));
-    p8g_image_t image = { imageIndex, imageWidth, imageHeight };
-    p8g_image(image, dx, dy, dw, dh, sx, sy, sw, sh);
+    p8g_image((p8g_image_t) { imageIndex, imageWidth, imageHeight }, dx, dy, dw, dh, sx, sy, sw, sh);
 }
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_imageMode(JNIEnv *env, jclass clazz, jint mode) {
@@ -91,6 +90,14 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_imageMode(JNIEnv 
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_line(JNIEnv *env, jclass clazz, jfloat x1, jfloat y1, jfloat x2, jfloat y2) {
     p8g_line(x1, y1, x2, y2);
+}
+
+JNIEXPORT jobject JNICALL Java_io_github_bernhardfritz_p8g_Sketch_loadFont(JNIEnv *env, jobject self, jstring filename) {
+    const char* nativeFilename = (*env)->GetStringUTFChars(env, filename, NULL);
+    p8g_font_t font = p8g_load_font(nativeFilename);
+    (*env)->ReleaseStringUTFChars(env, filename, nativeFilename);
+    jclass fontClass = (*env)->FindClass(env, "io/github/bernhardfritz/p8g/Font");
+    return (*env)->NewObject(env, fontClass, (*env)->GetMethodID(env, fontClass, "<init>", "(I)V"), font._index);
 }
 
 JNIEXPORT jobject JNICALL Java_io_github_bernhardfritz_p8g_Sketch_loadImage(JNIEnv *env, jobject self, jstring filename) {
@@ -198,6 +205,25 @@ JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_stroke(JNIEnv *en
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_strokeWeight(JNIEnv *env, jclass clazz, jfloat weight) {
     p8g_stroke_weight(weight);
+}
+
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_text(JNIEnv *env, jclass clazz, jstring str, jfloat x, jfloat y) {
+    const char* nativeStr = (*env)->GetStringUTFChars(env, str, NULL);
+    p8g_text(nativeStr, x, y);
+    (*env)->ReleaseStringUTFChars(env, str, nativeStr);
+}
+
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_textFont(JNIEnv *env, jclass clazz, jobject font) {
+    if (!font) {
+        return;
+    }
+    jclass fontClass = (*env)->GetObjectClass(env, font);
+    jint fontIndex = (*env)->GetIntField(env, font, (*env)->GetFieldID(env, fontClass, "index", "I"));
+    p8g_text_font((p8g_font_t) { fontIndex });
+}
+
+JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_textSize(JNIEnv *env, jclass clazz, jfloat size) {
+    p8g_text_size(size);
 }
 
 JNIEXPORT void JNICALL Java_io_github_bernhardfritz_p8g_Sketch_tint(JNIEnv *env, jclass clazz, jfloatArray color) {
