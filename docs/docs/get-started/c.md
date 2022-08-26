@@ -78,7 +78,7 @@ Tested on macOS Mojave 10.14.6 with command line tools installed via `xcode-sele
 ```
 .
 ├── hello_rectangle.c
-├── libglfw.so
+├── libglfw.so.3
 ├── libp8g.so
 └── p8g.h
 ```

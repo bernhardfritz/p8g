@@ -15,7 +15,7 @@ public abstract class Sketch {
                 load("p8g.dll");
                 load("io_github_bernhardfritz_p8g_Sketch.dll");
             } else if (osName.startsWith("Linux") || osName.startsWith("FreeBSD") || osName.startsWith("SunOS") || osName.startsWith("Unix")) {
-                load("libglfw.so");
+                load("libglfw.so.3");
                 load("libp8g.so");
                 load("libio_github_bernhardfritz_p8g_Sketch.so");
             } else if (osName.startsWith("Mac OS X") || osName.startsWith("Darwin")) {
