@@ -48,12 +48,12 @@ $(BUILD_DIR)/p8g.jar: src/main/java/io/github/bernhardfritz/p8g/Sketch.java src/
 	javac -d $(BUILD_DIR) src/main/java/io/github/bernhardfritz/p8g/Sketch.java src/main/java/io/github/bernhardfritz/p8g/Image.java src/main/java/io/github/bernhardfritz/p8g/Font.java; \
 	cp $(P8G_DIR)/glfw3.dll $(BUILD_DIR); \
 	cp $(P8G_DIR)/libglfw.3.dylib $(BUILD_DIR); \
-	cp $(P8G_DIR)/libglfw.so $(BUILD_DIR); \
+	cp $(P8G_DIR)/libglfw.so.3 $(BUILD_DIR); \
 	cp $(P8G_DIR)/libp8g.dylib $(BUILD_DIR); \
 	cp $(P8G_DIR)/libp8g.so $(BUILD_DIR); \
 	cp $(P8G_DIR)/p8g.dll $(BUILD_DIR); \
 	cd $(BUILD_DIR); \
-	jar cf p8g.jar io glfw3.dll io_github_bernhardfritz_p8g_Sketch.dll libglfw.3.dylib libglfw.so libio_github_bernhardfritz_p8g_Sketch.dylib libio_github_bernhardfritz_p8g_Sketch.so libp8g.dylib libp8g.so p8g.dll
+	jar cf p8g.jar io glfw3.dll io_github_bernhardfritz_p8g_Sketch.dll libglfw.3.dylib libglfw.so.3 libio_github_bernhardfritz_p8g_Sketch.dylib libio_github_bernhardfritz_p8g_Sketch.so libp8g.dylib libp8g.so p8g.dll
 
 .PHONY: clean
 

@@ -123,7 +123,6 @@ static void _p8g_key_pressed(int key_code) {
 #define keyPressed() p8g_key_pressed()
 void __attribute__((weak)) p8g_key_released(void);
 static void _p8g_key_released(int key_code) {
-    p8g_key_code = key_code;
     p8g_key_is_pressed = 0;
     p8g_key_released();
 }
@@ -144,7 +143,6 @@ static void _p8g_mouse_pressed(int mouse_button) {
 #define mousePressed() p8g_mouse_pressed()
 void __attribute__((weak)) p8g_mouse_released(void);
 static void _p8g_mouse_released(int mouse_button) {
-    p8g_mouse_button = mouse_button;
     p8g_mouse_is_pressed = 0;
     p8g_mouse_released();
 }
