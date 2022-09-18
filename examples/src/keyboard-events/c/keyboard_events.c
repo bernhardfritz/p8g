@@ -9,8 +9,8 @@ char buf[16] = "Press any key";
 void draw() {
     background(0);
     fill(255);
-    textSize(64);
-    text(buf, width / 2.f - (strlen(buf) * 36.f) / 2.f, height / 2.f + 18.f);
+    textSize(32);
+    text(buf, width / 2.f - (strlen(buf) * 18.f) / 2.f, height / 2.f + 8.f);
 }
 
 void keyPressed() {
@@ -18,5 +18,5 @@ void keyPressed() {
 }
 
 int main() {
-    run(512, 512, "Keyboard events");
+    run(320, 320, "Keyboard events");
 }

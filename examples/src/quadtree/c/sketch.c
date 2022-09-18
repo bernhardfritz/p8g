@@ -7,7 +7,7 @@
 
 #include "quadtree.h"
 
-#define HALF_DIMENSION 256
+#define HALF_DIMENSION 160
 
 vec4 GREEN = { 0.f, 255.f, 0.f, 255.f };
 vec4 WHITE = { 255.f, 255.f, 255.f, 255.f };
@@ -31,7 +31,7 @@ AABB aabb = {
         .x = 0.f,
         .y = 0.f,
     },
-    .halfDimension = 50.f,
+    .halfDimension = 40.f,
 };
 
 void draw() {
