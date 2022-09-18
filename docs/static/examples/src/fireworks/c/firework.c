@@ -42,7 +42,7 @@ void firework_explode(firework_t* firework) {
     vec4 color = { random(255.f), random(255.f), random(255.f), 255.f };
     for (int i = 0; i < 200; i++) {
         float angle = random(2.f * M_PI);
-        float magnitude = random(2.f, 10.f);
+        float magnitude = random(7.f);
         particle_t particle = {
             .position = { firework->rocket.position[0], firework->rocket.position[1] },
             .mass = random(0.7f, 1.f),

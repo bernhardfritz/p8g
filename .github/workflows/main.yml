@@ -12,44 +12,63 @@ jobs:
           MINGW_CC: null
           USE_EMSCRIPTEN: 0
           TARGET: c++/build/libp8g++.dylib
+          USE_YARN: 0
         - os: ubuntu-latest
           DIR: c++
           USE_MINGW: 0
           MINGW_CC: null
           USE_EMSCRIPTEN: 0
           TARGET: c++/build/libp8g++.so
+          USE_YARN: 0
         - os: ubuntu-latest
           DIR: c++
           USE_MINGW: 1
           MINGW_CC: x86_64-w64-mingw32-g++
           USE_EMSCRIPTEN: 0
           TARGET: c++/build/p8g++.dll
+          USE_YARN: 0
         - os: ubuntu-latest
           DIR: c++
           USE_MINGW: 0
           MINGW_CC: null
           USE_EMSCRIPTEN: 1
           TARGET: c++/build/p8g++.wasm
+          USE_YARN: 0
         - os: macos-latest
           DIR: java
           USE_MINGW: 0
           MINGW_CC: null
           USE_EMSCRIPTEN: 0
           TARGET: java/build/libio_github_bernhardfritz_p8g_Sketch.dylib
+          USE_YARN: 0
         - os: ubuntu-latest
           DIR: java
           USE_MINGW: 0
           MINGW_CC: null
           USE_EMSCRIPTEN: 0
           TARGET: java/build/libio_github_bernhardfritz_p8g_Sketch.so
+          USE_YARN: 0
         - os: ubuntu-latest
           DIR: java
           USE_MINGW: 1
           MINGW_CC: x86_64-w64-mingw32-gcc
           USE_EMSCRIPTEN: 0
           TARGET: java/build/io_github_bernhardfritz_p8g_Sketch.dll
+          USE_YARN: 0
+        - os: ubuntu-latest
+          DIR: js
+          USE_MINGW: 0
+          MINGW_CC: null
+          USE_EMSCRIPTEN: 1
+          TARGET: js/dist/p8g.js
+          USE_YARN: 1
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: yarn
+          cache-dependency-path: js/yarn.lock
       - run: |
           cd ${{ matrix.DIR }}
           if [ "${{ matrix.USE_MINGW }}" = 1 ]; then
@@ -66,6 +85,10 @@ jobs:
           else
             make
           fi
+          if [ "${{ matrix.USE_YARN }}" = 1 ]; then
+            yarn install --frozen-lockfile
+            yarn build
+          fi
       - uses: actions/upload-artifact@v3
         with:
           name: build
@@ -79,12 +102,13 @@ jobs:
       - uses: actions/download-artifact@v3
       - run: |
           mv build/libp8g++.dylib build/libp8g++.so build/p8g++.dll build/p8g++.wasm c++
+          mv build/p8g.js js
           mv build java
           cd java
           make build/p8g.jar
           rm -rf build/io
           rm -f build/io_github_bernhardfritz_p8g_Sketch.dll build/libio_github_bernhardfritz_p8g_Sketch.dylib build/libio_github_bernhardfritz_p8g_Sketch.so
-          zip -jr p8g.zip build ../c/p8g.h ../c/p8g.html ../c/p8g.wasm ../c++/libp8g++.dylib ../c++/libp8g++.so ../c++/p8g++.dll ../c++/p8g++.wasm ../c++/p8g.hpp
+          zip -jr p8g.zip build ../c/p8g.h ../c/p8g.html ../c/p8g.wasm ../c++/libp8g++.dylib ../c++/libp8g++.so ../c++/p8g++.dll ../c++/p8g++.wasm ../c++/p8g.hpp ../js/p8g.js
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:

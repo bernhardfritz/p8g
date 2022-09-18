@@ -11,30 +11,36 @@ import TabItem from '@theme/TabItem';
 
 ## Hello rectangle!
 
+<div className="flex">
+<div style={{flex: 1}}>
+
 ```java title=HelloRectangle.java
 import io.github.bernhardfritz.p8g.Sketch;
 
 public class HelloRectangle extends Sketch {
     @Override
     public void draw() {
-        background(100);
+        background(220);
         rect(50, 50, 100, 100);
     }
 
     public static void main(String[] args) {
         Sketch sketch = new HelloRectangle();
-        sketch.run(400, 400, "Hello rectangle!");
+        sketch.run(320, 320, "Hello rectangle!");
     }
 }
 ```
 
+</div>
 <ThemedImage
   alt="Screenshot"
   sources={{
     light: useBaseUrl('/img/hello-rectangle-light.png'),
     dark: useBaseUrl('/img/hello-rectangle-dark.png'),
   }}
+  width="320"
 />
+</div>
 
 ## Build and run with an IDE
 

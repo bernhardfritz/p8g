@@ -11,28 +11,34 @@ import TabItem from '@theme/TabItem';
 
 ## Hello rectangle!
 
+<div className="flex">
+<div style={{flex: 1}}>
+
 ```cpp title=hello_rectangle.cpp
 #include "p8g.hpp"
 
 using namespace p8g;
 
 void p8g::draw() {
-    background(100);
+    background(220);
     rect(50, 50, 100, 100);
 }
 
 int main() {
-    run(400, 400, "Hello rectangle!");
+    run(320, 320, "Hello rectangle!");
 }
 ```
 
+</div>
 <ThemedImage
   alt="Screenshot"
   sources={{
     light: useBaseUrl('/img/hello-rectangle-light.png'),
     dark: useBaseUrl('/img/hello-rectangle-dark.png'),
   }}
+  width="320"
 />
+</div>
 
 ## Build and run from the command line
 

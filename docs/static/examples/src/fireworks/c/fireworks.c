@@ -14,7 +14,7 @@ void draw() {
         firework_t firework = {
             .rocket = {
                 .position = { random(width), height },
-                .velocity = { 0.f, random(-10.f, -12.f) },
+                .velocity = { 0.f, random(-9.f, -10.f) },
                 .color = { 255.f, 0.f, 0.f, 255.f },
                 .mass = 1.f,
                 .lifespan = -1,
@@ -40,7 +40,7 @@ void draw() {
 }
 
 int main(void) {
-    run(512, 512, "Fireworks");
+    run(320, 320, "Fireworks");
     for (int i = 0; i < arrlen(fireworks); i++) {
         firework_t* firework = &fireworks[i];
         firework_destroy(firework);
