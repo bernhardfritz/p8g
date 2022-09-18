@@ -7,7 +7,7 @@ public class MouseEvents extends Sketch {
     @Override
     protected void draw() {
         if (!once) {
-            background(100);
+            background(220);
             once = true;
         }
     }
@@ -20,11 +20,11 @@ public class MouseEvents extends Sketch {
 
     @Override
     protected void mousePressed() {
-        background(100);
+        background(220);
     }
 
     public static void main(String[] args) {
         Sketch sketch = new MouseEvents();
-        sketch.run(512, 512, "Mouse events");
+        sketch.run(320, 320, "Mouse events");
     }
 }

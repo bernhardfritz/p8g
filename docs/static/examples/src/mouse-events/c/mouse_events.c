@@ -5,7 +5,7 @@ int once;
 
 void draw() {
     if (!once) {
-        background(100);
+        background(220);
         once = 1;
     }
 }
@@ -16,9 +16,9 @@ void mouseMoved() {
 }
 
 void mousePressed() {
-    background(100);
+    background(220);
 }
 
 int main() {
-    run(512, 512, "Mouse events");
+    run(320, 320, "Mouse events");
 }

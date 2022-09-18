@@ -47,7 +47,7 @@ public class Firework {
         Vector4f color = new Vector4f(random(255.f), random(255.f), random(255.f), 255.f);
         for (int i = 0; i < 200; i++) {
             float angle = random(2.f * (float) Math.PI);
-            float magnitude = random(2.f, 10.f);
+            float magnitude = random(7.f);
             Particle particle = new Particle(
                     new Vector2f(rocket.getPosition()),
                     random(0.7f, 1.f),

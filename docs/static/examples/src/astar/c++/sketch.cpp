@@ -67,8 +67,8 @@ void p8g::mouseMoved() {
 }
 
 int main() {
-    const int WIDTH = 512;
-    const int HEIGHT = 512;
+    const int WIDTH = 320;
+    const int HEIGHT = 320;
     w = (float) WIDTH / cols;
     h = (float) HEIGHT / rows;
     wh = w / 2.0f;

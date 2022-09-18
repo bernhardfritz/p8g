@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Reference
 
 export const Panel = ({children}) => (
@@ -91,5 +93,12 @@ export const Panel = ({children}) => (
         <h2>Random</h2>
         <a href="/docs/reference/random">random</a>
         <a href="/docs/reference/randomSeed">randomSeed</a>
+    </Panel>
+    <Panel>
+        <h2>Miscellaneous</h2>
+        <div style={{display: 'flex', gap: 4}}>
+            <a href="/docs/reference/createCanvas">createCanvas</a>
+            <img src={useBaseUrl('/img/js.svg')} title="JavaScript only" width="16" />
+        </div>
     </Panel>
 </div>
