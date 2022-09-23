@@ -7,7 +7,7 @@ import p8g, {
   loadImage,
   millis,
   width,
-} from './p8g.js';
+} from 'p8g.js';
 
 const background_day = await loadImage('background-day.png');
 const base = await loadImage('base.png');
