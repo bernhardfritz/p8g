@@ -2,8 +2,38 @@ import ModuleFactory from '../build/p8g.js';
 import p8gWasm from '../../c/p8g.wasm';
 const Module = await ModuleFactory({
   canvas: (() => {
+    const style = document.createElement('style');
+    document.head.appendChild(style);
+    style.sheet.insertRule(`
+      canvas.p8g {
+        border: 0px none;
+        image-rendering: optimizeSpeed;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+        image-rendering: crisp-edges;
+        image-rendering: pixelated;
+        -ms-interpolation-mode: nearest-neighbor;
+      }
+    `);
     const canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
+    canvas.classList.add('p8g');
+    canvas.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+    canvas.tabIndex = -1;
+    canvas.getContext = ((getContext) => {
+      return function (contextType, contextAttributes) {
+        if (contextAttributes) {
+          contextAttributes.antialias = false;
+          contextAttributes.imageSmoothingEnabled = false;
+          contextAttributes.preserveDrawingBuffer = true;
+        }
+        return getContext.call(this, contextType, contextAttributes);
+      };
+    })(canvas.getContext);
     return canvas;
   })(),
   locateFile: (path, scriptDirectory) => {
@@ -11,7 +41,7 @@ const Module = await ModuleFactory({
       return 'data:application/octet-stream;base64,' + p8gWasm;
     }
     return scriptDirectory + path;
-  }
+  },
 });
 const p8g = {
   draw: () => {},
