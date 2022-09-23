@@ -1,5 +1,5 @@
 ---
-description: C | Java
+description: C | Java | JavaScript
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,6 +14,10 @@ import particle_h from '!!raw-loader!@site/static/examples/src/fireworks/c/parti
 import firework_java from '!!raw-loader!@site/static/examples/src/fireworks/java/Firework.java';
 import fireworks_java from '!!raw-loader!@site/static/examples/src/fireworks/java/Fireworks.java';
 import particle_java from '!!raw-loader!@site/static/examples/src/fireworks/java/Particle.java';
+import firework_js from '!!raw-loader!@site/static/examples/src/fireworks/js/firework.js';
+import fireworks_js from '!!raw-loader!@site/static/examples/src/fireworks/js/fireworks.js';
+import index_html from '!!raw-loader!@site/static/examples/src/fireworks/js/index.html';
+import particle_js from '!!raw-loader!@site/static/examples/src/fireworks/js/particle.js';
 
 # Fireworks
 
@@ -31,5 +35,11 @@ import particle_java from '!!raw-loader!@site/static/examples/src/fireworks/java
 <CodeBlock language="java" title="Firework.java">{firework_java}</CodeBlock>
 <CodeBlock language="java" title="Fireworks.java">{fireworks_java}</CodeBlock>
 <CodeBlock language="java" title="Particle.java">{particle_java}</CodeBlock>
+</TabItem>
+<TabItem value="js" label="JavaScript">
+<CodeBlock language="js" title="firework.js">{firework_js}</CodeBlock>
+<CodeBlock language="js" title="fireworks.js">{fireworks_js}</CodeBlock>
+<CodeBlock language="html" title="index.html">{index_html}</CodeBlock>
+<CodeBlock language="js" title="particle.js">{particle_js}</CodeBlock>
 </TabItem>
 </Tabs>
