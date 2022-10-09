@@ -17,6 +17,13 @@ void p8g::draw() {
     image(yellowbird[(millis() / 100) % yellowbird.size()], width / 2, height / 2 + 2 * sinf(millis() / 100.f));
 }
 
+void p8g::keyPressed() {}
+void p8g::keyReleased() {}
+void p8g::mouseMoved() {}
+void p8g::mousePressed() {}
+void p8g::mouseReleased() {}
+void p8g::mouseWheel(float delta) {}
+
 int main() {
     run(288, 512, "Flappy Bird");
 }

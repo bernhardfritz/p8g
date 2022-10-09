@@ -110,48 +110,12 @@ extern float p8g_delta_time;
 p8g_color_mode_t p8g_peek_color_mode();
 
 extern void draw(void);
-static void _draw(float delta_time) {
-    p8g_delta_time = delta_time * 1000.f;
-    draw();
-}
-void __attribute__((weak)) p8g_key_pressed(void);
-static void _p8g_key_pressed(int key_code) {
-    p8g_key_code = key_code;
-    p8g_key_is_pressed = 1;
-    p8g_key_pressed();
-}
-#define keyPressed() p8g_key_pressed()
-void __attribute__((weak)) p8g_key_released(void);
-static void _p8g_key_released(int key_code) {
-    p8g_key_is_pressed = 0;
-    p8g_key_released();
-}
-#define keyReleased() p8g_key_released()
-void __attribute__((weak)) p8g_mouse_moved(void);
-static void _p8g_mouse_moved(float mouse_x, float mouse_y) {
-    p8g_mouse_x = mouse_x;
-    p8g_mouse_y = mouse_y;
-    p8g_mouse_moved();
-}
-#define mouseMoved() p8g_mouse_moved()
-void __attribute__((weak)) p8g_mouse_pressed(void);
-static void _p8g_mouse_pressed(int mouse_button) {
-    p8g_mouse_button = mouse_button;
-    p8g_mouse_is_pressed = 1;
-    p8g_mouse_pressed();
-}
-#define mousePressed() p8g_mouse_pressed()
-void __attribute__((weak)) p8g_mouse_released(void);
-static void _p8g_mouse_released(int mouse_button) {
-    p8g_mouse_is_pressed = 0;
-    p8g_mouse_released();
-}
-#define mouseReleased() p8g_mouse_released()
-void __attribute__((weak)) p8g_mouse_wheel(float delta);
-static void _p8g_mouse_wheel(float delta_x, float delta_y) {
-    p8g_mouse_wheel(delta_y);
-}
-#define mouseWheel(delta) p8g_mouse_wheel(delta)
+extern void keyPressed(void);
+extern void keyReleased(void);
+extern void mouseMoved(void);
+extern void mousePressed(void);
+extern void mouseReleased(void);
+extern void mouseWheel(float delta);
 #define P8G_ARG_2(_1, _2, N, ...) N
 #define P8G_ARG_3(_1, _2, _3, N, ...) N
 #define P8G_ARG_4(_1, _2, _3, _4, N, ...) N
@@ -221,19 +185,75 @@ static float _random1f(float max) {
 #define rectMode(mode) p8g_rect_mode(mode)
 #define resetMatrix() p8g_reset_matrix()
 #define rotate(angle) p8g_rotate(angle)
-static void _run(p8g_sketch_t sketch) {
-    p8g_width = sketch.width ? sketch.width : 100;
-    p8g_height = sketch.height ? sketch.height : 100;
-    sketch.draw = _draw;
-    sketch.key_pressed = _p8g_key_pressed;
-    sketch.key_released = _p8g_key_released;
-    sketch.mouse_moved = _p8g_mouse_moved;
-    sketch.mouse_pressed = _p8g_mouse_pressed;
-    sketch.mouse_released = _p8g_mouse_released;
-    sketch.mouse_wheel = _p8g_mouse_wheel;
-    p8g_run(sketch);
+typedef struct {
+    int width, height;
+    const char* title;
+    int full_screen;
+} p8g_run_args_t;
+static struct {
+    void (*draw)(void);
+    void (*keyPressed)(void);
+    void (*keyReleased)(void);
+    void (*mouseMoved)(void);
+    void (*mousePressed)(void);
+    void (*mouseReleased)(void);
+    void (*mouseWheel)(float);
+} _captures;
+static void _draw(float delta_time) {
+    p8g_delta_time = delta_time * 1000.f;
+    _captures.draw();
 }
-#define run(...) _run((p8g_sketch_t) { __VA_ARGS__ })
+static void _key_pressed(int key_code) {
+    p8g_key_code = key_code;
+    p8g_key_is_pressed = 1;
+    _captures.keyPressed();
+}
+static void _key_released(int key_code) {
+    p8g_key_is_pressed = 0;
+    _captures.keyReleased();
+}
+static void _mouse_moved(float mouse_x, float mouse_y) {
+    p8g_mouse_x = mouse_x;
+    p8g_mouse_y = mouse_y;
+    _captures.mouseMoved();
+}
+static void _mouse_pressed(int mouse_button) {
+    p8g_mouse_button = mouse_button;
+    p8g_mouse_is_pressed = 1;
+    _captures.mousePressed();
+}
+static void _mouse_released(int mouse_button) {
+    p8g_mouse_is_pressed = 0;
+    _captures.mouseReleased();
+}
+static void _mouse_wheel(float delta_x, float delta_y) {
+    _captures.mouseWheel(delta_y);
+}
+static void _run(p8g_run_args_t run_args, void (*draw)(void), void (*keyPressed)(void), void (*keyReleased)(void), void (*mouseMoved)(void), void (*mousePressed)(void), void (*mouseReleased)(void), void (*mouseWheel)(float)) {
+    p8g_width = run_args.width ? run_args.width : 100;
+    p8g_height = run_args.height ? run_args.height : 100;
+    _captures.draw = draw;
+    _captures.keyPressed = keyPressed;
+    _captures.keyReleased = keyReleased;
+    _captures.mouseMoved = mouseMoved;
+    _captures.mousePressed = mousePressed;
+    _captures.mouseReleased = mouseReleased;
+    _captures.mouseWheel = mouseWheel;
+    p8g_run((p8g_sketch_t) {
+        .width = run_args.width,
+        .height = run_args.height,
+        .title = run_args.title,
+        .full_screen = run_args.full_screen,
+        .draw = _draw,
+        .key_pressed = _key_pressed,
+        .key_released = _key_released,
+        .mouse_moved = _mouse_moved,
+        .mouse_pressed = _mouse_pressed,
+        .mouse_released = _mouse_released,
+        .mouse_wheel = _mouse_wheel,
+    });
+}
+#define run(...) _run((p8g_run_args_t) { __VA_ARGS__ }, draw, keyPressed, keyReleased, mouseMoved, mousePressed, mouseReleased, mouseWheel)
 #define _scale1f(s) p8g_scale(s, s)
 #define scale(...) P8G_ARG_2(__VA_ARGS__, p8g_scale, _scale1f)(__VA_ARGS__)
 #define smooth() p8g_smooth()

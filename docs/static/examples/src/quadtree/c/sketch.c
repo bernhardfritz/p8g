@@ -47,10 +47,17 @@ void draw() {
     arrfree(pointsInRange);
 }
 
+void keyPressed() {}
+void keyReleased() {}
+
 void mouseMoved() {
     aabb.center.x = mouseX;
     aabb.center.y = mouseY;
 }
+
+void mousePressed() {}
+void mouseReleased() {}
+void mouseWheel(float delta) {}
 
 int main() {
     vec2 center = { HALF_DIMENSION, HALF_DIMENSION };

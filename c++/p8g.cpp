@@ -2,41 +2,6 @@
 
 #include <memory>
 
-namespace {
-void draw(float deltaTime) {
-    p8g::deltaTime = deltaTime * 1000.f;
-    p8g::draw();
-}
-void keyPressed(int keyCode) {
-    p8g::keyCode = keyCode;
-    p8g::keyIsPressed = true;
-    p8g::keyPressed();
-}
-void keyReleased(int keyCode) {
-    p8g::keyCode = keyCode;
-    p8g::keyIsPressed = false;
-    p8g::keyReleased();
-}
-void mouseMoved(float mouseX, float mouseY) {
-    p8g::mouseX = mouseX;
-    p8g::mouseY = mouseY;
-    p8g::mouseMoved();
-}
-void mousePressed(int mouseButton) {
-    p8g::mouseButton = mouseButton;
-    p8g::mouseIsPressed = true;
-    p8g::mousePressed();
-}
-void mouseReleased(int mouseButton) {
-    p8g::mouseButton = mouseButton;
-    p8g::mouseIsPressed = false;
-    p8g::mouseReleased();
-}
-void mouseWheel(float deltaX, float deltaY) {
-    p8g::mouseWheel(deltaY);
-}
-}
-
 int p8g::width, p8g::height;
 int p8g::keyCode;
 bool p8g::keyIsPressed;
@@ -44,14 +9,6 @@ float p8g::mouseX, p8g::mouseY;
 int p8g::mouseButton;
 bool p8g::mouseIsPressed;
 float p8g::deltaTime;
-
-void p8g::draw() {}
-void p8g::keyPressed() {}
-void p8g::keyReleased() {}
-void p8g::mouseMoved() {}
-void p8g::mousePressed() {}
-void p8g::mouseReleased() {}
-void p8g::mouseWheel(float delta) {}
 
 void p8g::applyMatrix(float a, float b, float c, float d, float e, float f) {
     p8g_apply_matrix(a, b, c, d, e, f);
@@ -225,48 +182,61 @@ void p8g::rotate(float angle) {
     p8g_rotate(angle);
 }
 
-void p8g::run() {
+static struct {
+    void (*draw)(void);
+    void (*keyPressed)(void);
+    void (*keyReleased)(void);
+    void (*mouseMoved)(void);
+    void (*mousePressed)(void);
+    void (*mouseReleased)(void);
+    void (*mouseWheel)(float);
+} captures;
+void p8g::_run(p8g::RunArgs runArgs, void (*draw)(void), void (*keyPressed)(void), void (*keyReleased)(void), void (*mouseMoved)(void), void (*mousePressed)(void), void (*mouseReleased)(void), void (*mouseWheel)(float)) {
+    p8g::width = runArgs.width;
+    p8g::height = runArgs.height;
+    captures.draw = draw;
+    captures.keyPressed = keyPressed;
+    captures.keyReleased = keyReleased;
+    captures.mouseMoved = mouseMoved;
+    captures.mousePressed = mousePressed;
+    captures.mouseReleased = mouseReleased;
+    captures.mouseWheel = mouseWheel;
     p8g_run((p8g_sketch_t) {
-        .draw = ::draw,
-        .key_pressed = ::keyPressed,
-        .key_released = ::keyReleased,
-        .mouse_moved = ::mouseMoved,
-        .mouse_pressed = ::mousePressed,
-        .mouse_released = ::mouseReleased,
-        .mouse_wheel = ::mouseWheel,
-    });
-}
-
-void p8g::run(int width, int height) {
-    p8g::width = width;
-    p8g::height = height;
-    p8g_run((p8g_sketch_t) {
-        .width = width,
-        .height = height,
-        .draw = ::draw,
-        .key_pressed = ::keyPressed,
-        .key_released = ::keyReleased,
-        .mouse_moved = ::mouseMoved,
-        .mouse_pressed = ::mousePressed,
-        .mouse_released = ::mouseReleased,
-        .mouse_wheel = ::mouseWheel,
-    });
-}
-
-void p8g::run(int width, int height, std::string title) {
-    p8g::width = width;
-    p8g::height = height;
-    p8g_run((p8g_sketch_t) {
-        .width = width,
-        .height = height,
-        .title = title.c_str(),
-        .draw = ::draw,
-        .key_pressed = ::keyPressed,
-        .key_released = ::keyReleased,
-        .mouse_moved = ::mouseMoved,
-        .mouse_pressed = ::mousePressed,
-        .mouse_released = ::mouseReleased,
-        .mouse_wheel = ::mouseWheel,
+        .width = runArgs.width,
+        .height = runArgs.height,
+        .title = runArgs.title.c_str(),
+        .full_screen = runArgs.fullScreen,
+        .draw = [](float deltaTime) {
+            p8g::deltaTime = deltaTime * 1000.f;
+            captures.draw();
+        },
+        .key_pressed = [](int keyCode) {
+            p8g::keyCode = keyCode;
+            p8g::keyIsPressed = true;
+            captures.keyPressed();
+        },
+        .key_released = [](int keyCode) {
+            p8g::keyIsPressed = false;
+            captures.keyReleased();
+        },
+        .mouse_moved = [](float mouseX, float mouseY) {
+            p8g::mouseX = mouseX;
+            p8g::mouseY = mouseY;
+            captures.mouseMoved();
+        },
+        .mouse_pressed = [](int mouseButton) {
+            p8g::mouseButton = mouseButton;
+            p8g::mouseIsPressed = true;
+            captures.mousePressed();
+        },
+        .mouse_released = [](int mouseButton) {
+            p8g::mouseButton = mouseButton;
+            p8g::mouseIsPressed = false;
+            captures.mouseReleased();
+        },
+        .mouse_wheel = [](float deltaX, float deltaY) {
+            captures.mouseWheel(deltaY);
+        },
     });
 }
 
