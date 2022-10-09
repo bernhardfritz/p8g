@@ -710,7 +710,7 @@ updateGlobalBufferAndViews(buffer);
 // include: runtime_init_table.js
 // In RELOCATABLE mode we create the table in JS.
 var wasmTable = new WebAssembly.Table({
-  'initial': 33,
+  'initial': 40,
   'element': 'anyfunc'
 });
 
@@ -2157,12 +2157,12 @@ var ASM_CONSTS = {
   }
   __ZN3p8g12strokeWeightEf.stub = true;
 
-  function __ZN3p8g3runEiiNSt3__212basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE(
+  function __ZN3p8g4_runENS_7RunArgsEPFvvES2_S2_S2_S2_S2_PFvfE(
   ) {
-  if (!Module['__ZN3p8g3runEiiNSt3__212basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE']) abort("external symbol '_ZN3p8g3runEiiNSt3__212basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['__ZN3p8g3runEiiNSt3__212basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE'].apply(null, arguments);
+  if (!Module['__ZN3p8g4_runENS_7RunArgsEPFvvES2_S2_S2_S2_S2_PFvfE']) abort("external symbol '_ZN3p8g4_runENS_7RunArgsEPFvvES2_S2_S2_S2_S2_PFvfE' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
+  return Module['__ZN3p8g4_runENS_7RunArgsEPFvvES2_S2_S2_S2_S2_PFvfE'].apply(null, arguments);
   }
-  __ZN3p8g3runEiiNSt3__212basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE.stub = true;
+  __ZN3p8g4_runENS_7RunArgsEPFvvES2_S2_S2_S2_S2_PFvfE.stub = true;
 
   function __ZN3p8g4lineEffff(
   ) {
@@ -8364,7 +8364,7 @@ function checkIncomingModuleAPI() {
 var asmLibraryArg = {
   "_ZN3p8g10backgroundEf": __ZN3p8g10backgroundEf,
   "_ZN3p8g12strokeWeightEf": __ZN3p8g12strokeWeightEf,
-  "_ZN3p8g3runEiiNSt3__212basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE": __ZN3p8g3runEiiNSt3__212basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE,
+  "_ZN3p8g4_runENS_7RunArgsEPFvvES2_S2_S2_S2_S2_PFvfE": __ZN3p8g4_runENS_7RunArgsEPFvvES2_S2_S2_S2_S2_PFvfE,
   "_ZN3p8g4lineEffff": __ZN3p8g4lineEffff,
   "_ZN3p8g5pointEff": __ZN3p8g5pointEff,
   "_ZN3p8g5widthE": __ZN3p8g5widthE,
@@ -8412,12 +8412,6 @@ var _abs = Module["_abs"] = createExportWrapper("abs");
 var _memcpy = Module["_memcpy"] = createExportWrapper("memcpy");
 
 /** @type {function(...*):?} */
-var __ZN3p8g4drawEv = Module["__ZN3p8g4drawEv"] = createExportWrapper("_ZN3p8g4drawEv");
-
-/** @type {function(...*):?} */
-var __ZN3p8g10mouseMovedEv = Module["__ZN3p8g10mouseMovedEv"] = createExportWrapper("_ZN3p8g10mouseMovedEv");
-
-/** @type {function(...*):?} */
 var _memset = Module["_memset"] = createExportWrapper("memset");
 
 /** @type {function(...*):?} */
@@ -8461,9 +8455,6 @@ var _fgetc = Module["_fgetc"] = createExportWrapper("fgetc");
 
 /** @type {function(...*):?} */
 var _fmaxf = Module["_fmaxf"] = createExportWrapper("fmaxf");
-
-/** @type {function(...*):?} */
-var _fmin = Module["_fmin"] = createExportWrapper("fmin");
 
 /** @type {function(...*):?} */
 var _fminf = Module["_fminf"] = createExportWrapper("fminf");

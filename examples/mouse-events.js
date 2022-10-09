@@ -710,7 +710,7 @@ updateGlobalBufferAndViews(buffer);
 // include: runtime_init_table.js
 // In RELOCATABLE mode we create the table in JS.
 var wasmTable = new WebAssembly.Table({
-  'initial': 15,
+  'initial': 22,
   'element': 'anyfunc'
 });
 
@@ -1212,7 +1212,7 @@ var ASM_CONSTS = {
 
   var GOT = {};
   
-  var CurrentModuleWeakSymbols = new Set(["p8g_key_pressed","p8g_key_released","p8g_mouse_released","p8g_mouse_wheel"]);
+  var CurrentModuleWeakSymbols = new Set([]);
   var GOTHandler = {get:function(obj, symName) {
         var rtn = GOT[symName];
         if (!rtn) {
@@ -1510,7 +1510,7 @@ var ASM_CONSTS = {
       }
     }
   
-  var ___heap_base = 5255152;
+  var ___heap_base = 5255184;
   function getMemory(size) {
       // After the runtime is initialized, we must only use sbrk() normally.
       if (runtimeInitialized)
@@ -2153,7 +2153,7 @@ var ASM_CONSTS = {
   var ___memory_base = new WebAssembly.Global({'value': 'i32', 'mutable': false}, 1024);
   Module["___memory_base"] = ___memory_base;
 
-  var ___stack_pointer = new WebAssembly.Global({'value': 'i32', 'mutable': true}, 5255152);
+  var ___stack_pointer = new WebAssembly.Global({'value': 'i32', 'mutable': true}, 5255184);
   Module["___stack_pointer"] = ___stack_pointer;
 
   function setErrNo(value) {
@@ -7463,20 +7463,6 @@ var ASM_CONSTS = {
   }
   _p8g_key_is_pressed.stub = true;
 
-  function _p8g_key_pressed(
-  ) {
-  if (!Module['_p8g_key_pressed']) abort("external symbol 'p8g_key_pressed' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_key_pressed'].apply(null, arguments);
-  }
-  _p8g_key_pressed.stub = true;
-
-  function _p8g_key_released(
-  ) {
-  if (!Module['_p8g_key_released']) abort("external symbol 'p8g_key_released' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_key_released'].apply(null, arguments);
-  }
-  _p8g_key_released.stub = true;
-
   function _p8g_mouse_button(
   ) {
   if (!Module['_p8g_mouse_button']) abort("external symbol 'p8g_mouse_button' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
@@ -7490,20 +7476,6 @@ var ASM_CONSTS = {
   return Module['_p8g_mouse_is_pressed'].apply(null, arguments);
   }
   _p8g_mouse_is_pressed.stub = true;
-
-  function _p8g_mouse_released(
-  ) {
-  if (!Module['_p8g_mouse_released']) abort("external symbol 'p8g_mouse_released' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_mouse_released'].apply(null, arguments);
-  }
-  _p8g_mouse_released.stub = true;
-
-  function _p8g_mouse_wheel(
-  ) {
-  if (!Module['_p8g_mouse_wheel']) abort("external symbol 'p8g_mouse_wheel' is missing. perhaps a side module was not linked in? if this function was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment");
-  return Module['_p8g_mouse_wheel'].apply(null, arguments);
-  }
-  _p8g_mouse_wheel.stub = true;
 
   function _p8g_mouse_x(
   ) {
@@ -8053,12 +8025,8 @@ var asmLibraryArg = {
   "p8g_height": _p8g_height,
   "p8g_key_code": _p8g_key_code,
   "p8g_key_is_pressed": _p8g_key_is_pressed,
-  "p8g_key_pressed": _p8g_key_pressed,
-  "p8g_key_released": _p8g_key_released,
   "p8g_mouse_button": _p8g_mouse_button,
   "p8g_mouse_is_pressed": _p8g_mouse_is_pressed,
-  "p8g_mouse_released": _p8g_mouse_released,
-  "p8g_mouse_wheel": _p8g_mouse_wheel,
   "p8g_mouse_x": _p8g_mouse_x,
   "p8g_mouse_y": _p8g_mouse_y,
   "p8g_peek_color_mode": _p8g_peek_color_mode,
@@ -8120,9 +8088,6 @@ var _fgetc = Module["_fgetc"] = createExportWrapper("fgetc");
 
 /** @type {function(...*):?} */
 var _fmaxf = Module["_fmaxf"] = createExportWrapper("fmaxf");
-
-/** @type {function(...*):?} */
-var _fmin = Module["_fmin"] = createExportWrapper("fmin");
 
 /** @type {function(...*):?} */
 var _fminf = Module["_fminf"] = createExportWrapper("fminf");
@@ -8651,7 +8616,7 @@ function stackCheckInit() {
   // This is normally called automatically during __wasm_call_ctors but need to
   // get these values before even running any of the ctors so we call it redundantly
   // here.
-  _emscripten_stack_set_limits(5255152 , 12272);
+  _emscripten_stack_set_limits(5255184 , 12304);
   // TODO(sbc): Move writeStackCookie to native to to avoid this.
   writeStackCookie();
 }

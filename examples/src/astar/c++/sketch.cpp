@@ -57,6 +57,9 @@ void p8g::draw() {
     }
 }
 
+void p8g::keyPressed() {}
+void p8g::keyReleased() {}
+
 void p8g::mouseMoved() {
     int prevGx = gx, prevGy = gy;
     gx = glm::clamp<int>(glm::min(mouseX, (float) width) / w, 0, cols - 1);
@@ -65,6 +68,10 @@ void p8g::mouseMoved() {
         initAStar();
     }
 }
+
+void p8g::mousePressed() {}
+void p8g::mouseReleased() {}
+void p8g::mouseWheel(float delta) {}
 
 int main() {
     const int WIDTH = 320;
