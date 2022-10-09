@@ -15,6 +15,13 @@ void draw() {
     image(yellowbird[(millis() / 100) % (sizeof(yellowbird) / sizeof(yellowbird[0]))], width / 2, height / 2 + 2 * sinf(millis() / 100.f));
 }
 
+void keyPressed() {}
+void keyReleased() {}
+void mouseMoved() {}
+void mousePressed() {}
+void mouseReleased() {}
+void mouseWheel(float delta) {}
+
 int main() {
     background_day = loadImage("background-day.png");
     base = loadImage("base.png");

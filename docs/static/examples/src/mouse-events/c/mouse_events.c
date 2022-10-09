@@ -10,6 +10,9 @@ void draw() {
     }
 }
 
+void keyPressed() {}
+void keyReleased() {}
+
 void mouseMoved() {
     ellipseMode(CENTER);
     ellipse(mouseX, mouseY, 50, 50);
@@ -18,6 +21,9 @@ void mouseMoved() {
 void mousePressed() {
     background(220);
 }
+
+void mouseReleased() {}
+void mouseWheel(float delta) {}
 
 int main() {
     run(320, 320, "Mouse events");

@@ -17,6 +17,12 @@ void keyPressed() {
     snprintf(buf, 16, "keyCode: %d", keyCode);
 }
 
+void keyReleased() {}
+void mouseMoved() {}
+void mousePressed() {}
+void mouseReleased() {}
+void mouseWheel(float delta) {}
+
 int main() {
     run(320, 320, "Keyboard events");
 }

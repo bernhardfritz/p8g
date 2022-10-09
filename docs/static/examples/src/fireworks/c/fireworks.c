@@ -39,6 +39,13 @@ void draw() {
     }
 }
 
+void keyPressed() {}
+void keyReleased() {}
+void mouseMoved() {}
+void mousePressed() {}
+void mouseReleased() {}
+void mouseWheel(float delta) {}
+
 int main(void) {
     run(320, 320, "Fireworks");
     for (int i = 0; i < arrlen(fireworks); i++) {

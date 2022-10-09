@@ -23,6 +23,13 @@ void draw() {
     rect(50, 50, 100, 100);
 }
 
+void keyPressed() {}
+void keyReleased() {}
+void mouseMoved() {}
+void mousePressed() {}
+void mouseReleased() {}
+void mouseWheel(float delta) {}
+
 int main() {
     run(320, 320, "Hello rectangle!");
 }
