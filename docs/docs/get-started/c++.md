@@ -120,7 +120,7 @@ Tested on Ubuntu 20.04.3 LTS with build essentials installed via `sudo apt insta
 ```
 
 ```bash
-em++ -std=c++11 -s MAIN_MODULE=2 -sEXPORTED_FUNCTIONS=_main -o hello_rectangle.html hello_rectangle.cpp p8g++.wasm -L. -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s FULL_ES3=1 -s USE_GLFW=3 --shell-file p8g.html
+em++ -std=c++11 -s MAIN_MODULE=2 -sEXPORTED_FUNCTIONS=_main -o hello_rectangle.html hello_rectangle.cpp p8g++.wasm -L. -s MIN_WEBGL_VERSION=2 -s MAX_WEBGL_VERSION=2 -s FULL_ES3=1 -s USE_GLFW=3 -s ALLOW_MEMORY_GROWTH=1 --shell-file p8g.html
 emrun --no_browser hello_rectangle.html
 ```
 
