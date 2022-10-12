@@ -28,6 +28,7 @@ const sidebars = {
         'flappy-bird',
         'keyboard-events',
         'mouse-events',
+        'noise',
         'quadtree',
       ],
     },
