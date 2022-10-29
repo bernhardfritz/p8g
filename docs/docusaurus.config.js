@@ -1,13 +1,15 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const path = require('path');
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Precessing',
-  tagline: 'Precessing, also known as p8g, is a general-purpose 2D graphics library.',
+  tagline:
+    'Precessing, also known as p8g, is a general-purpose 2D graphics library.',
   url: 'https://bernhardfritz.github.io',
   baseUrl: '/p8g/',
   onBrokenLinks: 'throw',
@@ -54,7 +56,13 @@ const config = {
             to: '/examples',
             position: 'left',
             label: 'Examples',
-            activeBaseRegex: '/examples/',
+            activeBaseRegex: '/examples',
+          },
+          {
+            to: '/editor',
+            position: 'left',
+            label: 'Editor',
+            activeBaseRegex: '/editor',
           },
           {
             href: 'https://github.com/bernhardfritz/p8g',
@@ -120,30 +128,46 @@ const config = {
       },
     }),
 
-    plugins: [
-      (context, options) => ({
-        name: 'counter.dev',
-        injectHtmlTags: ({content}) => ({
-          headTags: [
-            {
-              tagName: 'script',
-              innerHTML: 'if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"bernhardfritz",utcoffset:"2"}))};sessionStorage.setItem("_swa","1");',
-            }
-          ]
-        })
+  plugins: [
+    (context, options) => ({
+      name: 'counter.dev',
+      injectHtmlTags: ({ content }) => ({
+        headTags: [
+          {
+            tagName: 'script',
+            attributes: {
+              src: 'https://cdn.counter.dev/script.js',
+              'data-id': '65b03550-41cc-469f-a1e9-8dbd91e95974',
+              'data-utcoffset': '2',
+            },
+          },
+        ],
       }),
-      [
-        'content-docs',
-        /** @type {import('@docusaurus/plugin-content-docs').Options} */
-        {
-          id: 'examples',
-          path: 'examples',
-          routeBasePath: 'examples',
-          sidebarPath: require.resolve('./sidebarsExamples.js'),
-          editUrl: 'https://github.com/bernhardfritz/p8g/edit/master/docs',
-        },
-      ],
+    }),
+    [
+      'content-docs',
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: 'examples',
+        path: 'examples',
+        routeBasePath: 'examples',
+        sidebarPath: require.resolve('./sidebarsExamples.js'),
+        editUrl: 'https://github.com/bernhardfritz/p8g/edit/master/docs',
+      },
     ],
+    [
+      path.resolve(__dirname, 'plugin-dynamic-routes'),
+      {
+        routes: [
+          {
+            path: '/editor',
+            exact: false,
+            component: '@site/src/components/Editor',
+          },
+        ],
+      },
+    ],
+  ],
 };
 
 module.exports = config;

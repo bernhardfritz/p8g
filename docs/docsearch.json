@@ -1,14 +1,15 @@
 {
     "index_name": "p8g",
     "start_urls": [
-      "https://bernhardfritz.github.io/p8g/"
+      "https://bernhardfritz.github.io/p8g/docs/reference"
     ],
     "sitemap_urls": [
       "https://bernhardfritz.github.io/p8g/sitemap.xml"
     ],
     "sitemap_alternate_links": true,
     "stop_urls": [
-      "/tests"
+      "/tests",
+      "https://bernhardfritz.github.io/p8g/docs/reference/$"
     ],
     "selectors": {
       "lvl0": {
@@ -17,13 +18,8 @@
         "global": true,
         "default_value": "Documentation"
       },
-      "lvl1": "header h1",
-      "lvl2": "article h2",
-      "lvl3": "article h3",
-      "lvl4": "article h4",
-      "lvl5": "article h5, article td:first-child",
-      "lvl6": "article h6",
-      "text": "article p, article li, article td:last-child"
+      "lvl1": "article h1",
+      "text": "article p"
     },
     "strip_chars": " .,;:#",
     "custom_settings": {
