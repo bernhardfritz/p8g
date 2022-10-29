@@ -15,9 +15,10 @@ export default function Editor() {
   const history = useHistory();
   const location = useLocation();
   const match = matchPath(location.pathname, {
-    path: '/editor/:id',
+    path: useBaseUrl('/editor/:id'),
   });
   const gistId = match !== null ? match.params.id : null;
+  const baseUrl = useBaseUrl('/');
   const [content, setContent] = useState(
     gistId === null
       ? `import p8g, {
@@ -69,7 +70,7 @@ createCanvas(320, 320);`
                 },
               }),
             )
-            .then((gist) => history.replace(`/editor/${gist.id}`));
+            .then((gist) => history.replace(`${baseUrl}editor/${gist.id}`));
         }
       });
     } else {
@@ -86,7 +87,7 @@ createCanvas(320, 320);`
             description: `https://bernhardfritz.github.io/p8g/editor/${gist.id}`,
           }),
         )
-        .then((gist) => history.replace(`/editor/${gist.id}`));
+        .then((gist) => history.replace(`${baseUrl}editor/${gist.id}`));
     }
   };
   return (
