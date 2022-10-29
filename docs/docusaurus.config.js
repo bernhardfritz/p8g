@@ -160,7 +160,7 @@ const config = {
       {
         routes: [
           {
-            path: '/editor',
+            path: '/p8g/editor',
             exact: false,
             component: '@site/src/components/Editor',
           },
