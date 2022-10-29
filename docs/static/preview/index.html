@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preview</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var iFrameResizer = {
+        onReady: function () {
+          window.parentIFrame.sendMessage('ready');
+        },
+        onMessage: function (message) {
+          if (message === 'reload') {
+            window.location.reload();
+            return;
+          }
+          var script = document.createElement('script');
+          script.type = 'module';
+          var textNode = document.createTextNode(message);
+          script.appendChild(textNode);
+          document.body.appendChild(script);
+        },
+      };
+    </script>
+    <script src="iframeResizer.contentWindow.min.js"></script>
+  </body>
+</html>
