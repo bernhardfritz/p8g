@@ -209,6 +209,7 @@ static void _key_pressed(int key_code) {
     _captures.keyPressed();
 }
 static void _key_released(int key_code) {
+    p8g_key_code = key_code;
     p8g_key_is_pressed = 0;
     _captures.keyReleased();
 }
@@ -223,6 +224,7 @@ static void _mouse_pressed(int mouse_button) {
     _captures.mousePressed();
 }
 static void _mouse_released(int mouse_button) {
+    p8g_mouse_button = mouse_button;
     p8g_mouse_is_pressed = 0;
     _captures.mouseReleased();
 }
