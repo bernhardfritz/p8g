@@ -371,7 +371,8 @@ export const createCanvas = (() => {
     keyIsPressed = true;
     p8g.keyPressed();
   };
-  const keyReleased = (keyCode) => {
+  const keyReleased = (_keyCode) => {
+    keyCode = _keyCode;
     keyIsPressed = false;
     p8g.keyReleased();
   };
@@ -385,7 +386,8 @@ export const createCanvas = (() => {
     mouseIsPressed = true;
     p8g.mousePressed();
   };
-  const mouseReleased = (mouseButton) => {
+  const mouseReleased = (_mouseButton) => {
+    mouseButton = _mouseButton;
     mouseIsPressed = false;
     p8g.mouseReleased();
   };

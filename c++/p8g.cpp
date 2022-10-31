@@ -216,6 +216,7 @@ void p8g::_run(p8g::RunArgs runArgs, void (*draw)(void), void (*keyPressed)(void
             captures.keyPressed();
         },
         .key_released = [](int keyCode) {
+            p8g::keyCode = keyCode;
             p8g::keyIsPressed = false;
             captures.keyReleased();
         },

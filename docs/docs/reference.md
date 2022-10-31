@@ -61,6 +61,8 @@ export const Panel = ({children}) => (
         <a href="/docs/reference/mousePressed">mousePressed</a>
         <a href="/docs/reference/mouseReleased">mouseReleased</a>
         <a href="/docs/reference/mouseWheel">mouseWheel</a>
+        <a href="/docs/reference/mouseX">mouseX</a>
+        <a href="/docs/reference/mouseY">mouseY</a>
     </Panel>
     <Panel>
         <h2>Image</h2>
