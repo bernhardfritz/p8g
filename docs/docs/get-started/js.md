@@ -65,6 +65,8 @@ createCanvas(320, 320);
 ├── hello-rectangle.js
 ├── index.html
 └── p8g.js
+
+0 directories, 3 files
 ```
 
 Use something like `python -m http.server` or https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer to serve your sketch during development.
@@ -75,6 +77,8 @@ Use something like `python -m http.server` or https://marketplace.visualstudio.c
 .
 ├── hello-rectangle.js
 └── index.html
+
+0 directories, 2 files
 ```
 
 ```diff title=hello-rectangle.js
@@ -90,6 +94,8 @@ Use something like `python -m http.server` or https://marketplace.visualstudio.c
 .
 ├── hello-rectangle.js
 └── index.html
+
+0 directories, 2 files
 ```
 
 ```diff title=hello-rectangle.js
@@ -102,6 +108,19 @@ Use something like `python -m http.server` or https://marketplace.visualstudio.c
 `npm install snowpack --save-dev`
 
 `npx snowpack dev`
+
+</TabItem>
+<TabItem value="cookiecutter" label="Cookiecutter">
+
+```
+.
+
+0 directories, 0 files
+```
+
+`cookiecutter https://github.com/bernhardfritz/cookiecutter-p8g`
+
+[cookiecutter-p8g](https://github.com/bernhardfritz/cookiecutter-p8g) is a Cookiecutter template for a p8g project.
 
 </TabItem>
 </Tabs>

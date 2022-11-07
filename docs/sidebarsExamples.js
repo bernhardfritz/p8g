@@ -24,6 +24,7 @@ const sidebars = {
       },
       items: [
         'astar',
+        'breakout',
         'fireworks',
         'flappy-bird',
         'keyboard-events',
