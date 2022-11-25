@@ -14,12 +14,11 @@ export default function Login() {
     if (searchParams.get('error')) {
       setErrorMessage(searchParams.get('error_description'));
     } else {
-      fetch('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token', {
+      fetch('https://p8g.bernhardfritz.workers.dev/?https://github.com/login/oauth/access_token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
         },
         body: JSON.stringify({
           client_id: '9adadcb2a0c067e95302',
