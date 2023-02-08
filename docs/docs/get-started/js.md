@@ -6,6 +6,7 @@ import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import IconExternalLink from '@theme/IconExternalLink';
 
 # JavaScript
 
@@ -120,7 +121,7 @@ Use something like `python -m http.server` or https://marketplace.visualstudio.c
 
 `cookiecutter https://github.com/bernhardfritz/cookiecutter-p8g`
 
-[cookiecutter-p8g](https://github.com/bernhardfritz/cookiecutter-p8g) is a Cookiecutter template for a p8g project.
+[cookiecutter-p8g<IconExternalLink />](https://github.com/bernhardfritz/cookiecutter-p8g) is a Cookiecutter template for a p8g project.
 
 </TabItem>
 </Tabs>

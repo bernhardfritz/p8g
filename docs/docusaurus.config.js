@@ -28,6 +28,9 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/bernhardfritz/p8g/edit/master/docs',
         },
+        blog: {
+          path: 'blog',
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -57,6 +60,11 @@ const config = {
             position: 'left',
             label: 'Examples',
             activeBaseRegex: '/examples',
+          },
+          {
+            to: 'blog',
+            label: 'Blog',
+            position: 'left',
           },
           {
             to: '/editor',
@@ -107,6 +115,10 @@ const config = {
           {
             title: 'More',
             items: [
+              {
+                label: 'Blog',
+                to: '/blog',
+              },
               {
                 label: 'GitHub',
                 href: 'https://github.com/bernhardfritz/p8g',
