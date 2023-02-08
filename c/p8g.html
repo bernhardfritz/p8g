@@ -25,6 +25,7 @@
         image-rendering: crisp-edges;
         image-rendering: pixelated;
         -ms-interpolation-mode: nearest-neighbor;
+        margin: -0.375px 0 0 -0.375px;
       }
 
       canvas.emscripten:focus {
@@ -92,7 +93,9 @@
     </style>
   </head>
   <body>
-    <canvas class="emscripten hidden" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    <div style="display: inline-flex; overflow: hidden;">
+      <canvas class="emscripten hidden" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    </div>
     <div class="spinner" id="spinner"></div>
     <div class="emscripten" id="status">Downloading...</div>
 

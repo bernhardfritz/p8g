@@ -7,6 +7,6 @@ import IconExternalLink from '@theme/IconExternalLink';
 
 # Breakout
 
-<AutofocusIframe src="https://bernhardfritz.github.io/breakout/" width="640" height="420" scrolling="no" />
+<AutofocusIframe src="https://bernhardfritz.github.io/breakout" width="640" height="420" scrolling="no" />
 <br />
 <a href="https://github.com/bernhardfritz/breakout">Source code<IconExternalLink /></a>

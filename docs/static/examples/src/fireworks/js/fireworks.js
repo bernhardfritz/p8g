@@ -33,6 +33,4 @@ p8g.draw = () => {
   }
 };
 
-const canvasWrapper = document.getElementById('canvas-wrapper');
-const canvas = createCanvas(320, 320);
-canvasWrapper.appendChild(canvas);
+createCanvas(320, 320);

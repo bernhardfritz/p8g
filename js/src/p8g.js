@@ -7,6 +7,7 @@ const Module = await ModuleFactory({
     style.sheet.insertRule(`
       canvas.p8g {
         border: 0px none;
+        background-color: black;
         image-rendering: optimizeSpeed;
         image-rendering: -moz-crisp-edges;
         image-rendering: -o-crisp-edges;
@@ -15,11 +16,21 @@ const Module = await ModuleFactory({
         image-rendering: crisp-edges;
         image-rendering: pixelated;
         -ms-interpolation-mode: nearest-neighbor;
+        margin: -0.375px 0 0 -0.375px;
       }
     `);
+    style.sheet.insertRule(`
+      .hidden {
+        display: none;
+      }
+    `);
+    const canvasWrapper = document.createElement('div');
+    document.body.appendChild(canvasWrapper);
+    canvasWrapper.style.cssText = 'display: inline-flex; overflow: hidden;';
     const canvas = document.createElement('canvas');
-    document.body.appendChild(canvas);
+    canvasWrapper.appendChild(canvas);
     canvas.classList.add('p8g');
+    canvas.classList.add('hidden');
     canvas.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
@@ -397,6 +408,7 @@ export const createCanvas = (() => {
   return (_width, _height) => {
     width = _width;
     height = _height;
+    Module.canvas.classList.remove('hidden');
     run(
       width,
       height,
