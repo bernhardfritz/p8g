@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Precessing Blog</title>
+        <link>https://bernhardfritz.github.io/p8g/blog</link>
+        <description>Precessing Blog</description>
+        <lastBuildDate>Wed, 08 Feb 2023 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[p8g v0.8.3 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2023/02/08/p8g-0-8-3-is-out</link>
+            <guid>/2023/02/08/p8g-0-8-3-is-out</guid>
+            <pubDate>Wed, 08 Feb 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[* apply a black CSS background to p8g.js canvas by default #28]]></description>
+            <content:encoded><![CDATA[<ul><li>apply a black CSS background to p8g.js canvas by default <a href="https://github.com/bernhardfritz/p8g/issues/28" target="_blank" rel="noopener noreferrer">#28</a></li><li>ensure predictable rasterization <a href="https://github.com/bernhardfritz/p8g/issues/34" target="_blank" rel="noopener noreferrer">#34</a></li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.8.2 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/10/31/p8g-0-8-2-is-out</link>
+            <guid>/2022/10/31/p8g-0-8-2-is-out</guid>
+            <pubDate>Mon, 31 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* fix keyCode and mouseButton to also be set on release]]></description>
+            <content:encoded><![CDATA[<ul><li>fix keyCode and mouseButton to also be set on release</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.8.1 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/10/12/p8g-0-8-1-is-out</link>
+            <guid>/2022/10/12/p8g-0-8-1-is-out</guid>
+            <pubDate>Wed, 12 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* allow memory growth]]></description>
+            <content:encoded><![CDATA[<ul><li>allow memory growth</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.8.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/10/09/p8g-0-8-0-is-out</link>
+            <guid>/2022/10/09/p8g-0-8-0-is-out</guid>
+            <pubDate>Sun, 09 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* fix C/C++ runtime errors on Windows]]></description>
+            <content:encoded><![CDATA[<ul><li>fix C/C++ runtime errors on Windows</li><li>fix font smoothing</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.7.2 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/09/27/p8g-0-7-2-is-out</link>
+            <guid>/2022/09/27/p8g-0-7-2-is-out</guid>
+            <pubDate>Tue, 27 Sep 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* fix font rendering artifacts]]></description>
+            <content:encoded><![CDATA[<ul><li>fix font rendering artifacts</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.7.1 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/09/23/p8g-0-7-1-is-out</link>
+            <guid>/2022/09/23/p8g-0-7-1-is-out</guid>
+            <pubDate>Fri, 23 Sep 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* fix bug in JavaScript binding that prevented drawing buffer from being]]></description>
+            <content:encoded><![CDATA[<ul><li>fix bug in JavaScript binding that prevented drawing buffer from being
+preserved</li><li>add more JavaScript examples</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.7.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/09/18/p8g-0-7-0-is-out</link>
+            <guid>/2022/09/18/p8g-0-7-0-is-out</guid>
+            <pubDate>Sun, 18 Sep 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add JavaScript support]]></description>
+            <content:encoded><![CDATA[<ul><li>add JavaScript support</li><li>make docs more mobile-friendly</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.6.1 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/08/26/p8g-0-6-1-is-out</link>
+            <guid>/2022/08/26/p8g-0-6-1-is-out</guid>
+            <pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* fix linux issue related to libglfw.so]]></description>
+            <content:encoded><![CDATA[<ul><li>fix linux issue related to libglfw.so</li><li>prevent keyCode and mouseButton from being updated during keyReleased
+and mouseReleased respectively</li><li>update keyboard event example screenshot</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.6.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/08/15/p8g-0-6-0-is-out</link>
+            <guid>/2022/08/15/p8g-0-6-0-is-out</guid>
+            <pubDate>Mon, 15 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add functions to load custom fonts and display text]]></description>
+            <content:encoded><![CDATA[<ul><li>add functions to load custom fonts and display text</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.5.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/07/29/p8g-0-5-0-is-out</link>
+            <guid>/2022/07/29/p8g-0-5-0-is-out</guid>
+            <pubDate>Fri, 29 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add functions to load and display images]]></description>
+            <content:encoded><![CDATA[<ul><li>add functions to load and display images</li><li>add random number functions</li><li>add function for millis since start</li><li>fix colorMode bug</li><li>add flappy bird example</li><li>improve docs</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.4.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/07/11/p8g-0-4-0-is-out</link>
+            <guid>/2022/07/11/p8g-0-4-0-is-out</guid>
+            <pubDate>Mon, 11 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add support for C++]]></description>
+            <content:encoded><![CDATA[<ul><li>add support for C++</li><li>update docs</li><li>add A* example written in C++</li><li>CI adaptions</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.3.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/06/20/p8g-0-3-0-is-out</link>
+            <guid>/2022/06/20/p8g-0-3-0-is-out</guid>
+            <pubDate>Mon, 20 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add mouse and keyboard events]]></description>
+            <content:encoded><![CDATA[<ul><li>add mouse and keyboard events</li><li>add deltaTime</li><li>fix bug related to use of static variables in p8g.h</li><li>fix bug in scale function</li><li>minor ci adaptions</li><li>add more examples to the docs</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.2.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/05/23/p8g-0-2-0-is-out</link>
+            <guid>/2022/05/23/p8g-0-2-0-is-out</guid>
+            <pubDate>Mon, 23 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add support for compilation to WebAssembly]]></description>
+            <content:encoded><![CDATA[<ul><li>add support for compilation to WebAssembly</li><li>fix color macros</li><li>add code examples to the docs</li><li>promote discord server more prominently</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.1.1 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/04/22/p8g-0-1-1-is-out</link>
+            <guid>/2022/04/22/p8g-0-1-1-is-out</guid>
+            <pubDate>Fri, 22 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add p8g.h to p8g.zip]]></description>
+            <content:encoded><![CDATA[<ul><li>add p8g.h to p8g.zip</li><li>add logo to documentation</li><li>change documentation color theme</li><li>fix typo in HelloRectangle.java</li><li>update readme</li></ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[p8g v0.1.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2022/04/10/p8g-0-1-0-is-out</link>
+            <guid>/2022/04/10/p8g-0-1-0-is-out</guid>
+            <pubDate>Sun, 10 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add ci]]></description>
+            <content:encoded><![CDATA[<ul><li>add ci</li></ul>]]></content:encoded>
+        </item>
+    </channel>
+</rss>
