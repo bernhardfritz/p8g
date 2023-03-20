@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkp8g_docs=self.webpackChunkp8g_docs||[]).push([[5214],{4533:function(e){e.exports=JSON.parse('{"permalink":"/p8g/blog","page":1,"postsPerPage":10,"totalPages":2,"totalCount":16,"nextPage":"/p8g/blog/page/2","blogDescription":"Blog","blogTitle":"Blog"}')}}]);

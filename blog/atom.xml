@@ -2,11 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bernhardfritz.github.io/p8g/blog</id>
     <title>Precessing Blog</title>
-    <updated>2023-02-08T00:00:00.000Z</updated>
+    <updated>2023-03-21T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bernhardfritz.github.io/p8g/blog"/>
     <subtitle>Precessing Blog</subtitle>
     <icon>https://bernhardfritz.github.io/p8g/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Spring event 2023 🌷]]></title>
+        <id>/2023/03/21/spring-event</id>
+        <link href="https://bernhardfritz.github.io/p8g/blog/2023/03/21/spring-event"/>
+        <updated>2023-03-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Implement a spring-themed sketch and share your result on Discord within March 21st and June 21st.]]></summary>
+        <content type="html"><![CDATA[<p><em>The snow begins to melt and flowering plants are about to bloom.</em></p><div class="flex"><div style="flex:1"><p>This is your time to get creative! 👀</p><p>Implement a spring-themed sketch, <a href="https://discord.gg/B3vrdJcra6" target="_blank" rel="noopener noreferrer">join Discord</a> and share your result in <strong>#general</strong> within March 21<sup>st</sup> and June 21<sup>st</sup>. At the end of the event all submissions will be collected in a separate blog post on this website and we will do a vote. The submission with the highest number of votes wins 🏆.</p></div><div><img loading="lazy" src="/p8g/img/spring-event-2023.jpg" width="175" style="margin:10px" class="img_ev3q"></div></div><p>Have fun and good luck! 😊</p>]]></content>
+        <author>
+            <name>Bernhard Fritz</name>
+            <email>bernhard.e.fritz@gmail.com</email>
+            <uri>https://github.com/bernhardfritz</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[p8g v0.8.3 is out! 🎉]]></title>
         <id>/2023/02/08/p8g-0-8-3-is-out</id>

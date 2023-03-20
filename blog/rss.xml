@@ -4,10 +4,19 @@
         <title>Precessing Blog</title>
         <link>https://bernhardfritz.github.io/p8g/blog</link>
         <description>Precessing Blog</description>
-        <lastBuildDate>Wed, 08 Feb 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 21 Mar 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Spring event 2023 🌷]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2023/03/21/spring-event</link>
+            <guid>/2023/03/21/spring-event</guid>
+            <pubDate>Tue, 21 Mar 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Implement a spring-themed sketch and share your result on Discord within March 21st and June 21st.]]></description>
+            <content:encoded><![CDATA[<p><em>The snow begins to melt and flowering plants are about to bloom.</em></p><div class="flex"><div style="flex:1"><p>This is your time to get creative! 👀</p><p>Implement a spring-themed sketch, <a href="https://discord.gg/B3vrdJcra6" target="_blank" rel="noopener noreferrer">join Discord</a> and share your result in <strong>#general</strong> within March 21<sup>st</sup> and June 21<sup>st</sup>. At the end of the event all submissions will be collected in a separate blog post on this website and we will do a vote. The submission with the highest number of votes wins 🏆.</p></div><div><img loading="lazy" src="/p8g/img/spring-event-2023.jpg" width="175" style="margin:10px" class="img_ev3q"></div></div><p>Have fun and good luck! 😊</p>]]></content:encoded>
+            <author>bernhard.e.fritz@gmail.com (Bernhard Fritz)</author>
+        </item>
         <item>
             <title><![CDATA[p8g v0.8.3 is out! 🎉]]></title>
             <link>https://bernhardfritz.github.io/p8g/blog/2023/02/08/p8g-0-8-3-is-out</link>
