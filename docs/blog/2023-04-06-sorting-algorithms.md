@@ -1,7 +1,7 @@
 ---
 title: Sorting algorithms 📚
 description: Learn about sorting algorithms and how to visualize them.
-image: https://i.imgur.com/dXtJuh0.png
+image: https://i.imgur.com/VFOTk7O.jpg
 authors: bernhardfritz
 ---
 
