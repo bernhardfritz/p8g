@@ -1,6 +1,7 @@
 ---
 title: Sorting algorithms 📚
-description: Well-known sorting algorithms visualized with p8g.
+description: Learn about sorting algorithms and how to visualize them.
+image: https://i.imgur.com/dXtJuh0.png
 authors: bernhardfritz
 ---
 
