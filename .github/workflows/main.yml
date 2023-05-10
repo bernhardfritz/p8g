@@ -60,13 +60,13 @@ jobs:
           USE_MINGW: 0
           MINGW_CC: null
           USE_EMSCRIPTEN: 1
-          TARGET: js/dist/p8g.js
+          TARGET: js/dist/
           USE_YARN: 1
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18
           cache: yarn
           cache-dependency-path: js/yarn.lock
       - run: |
@@ -92,8 +92,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build
-          path: |
-            ${{ matrix.TARGET }}
+          path: ${{ matrix.TARGET }}
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -102,13 +101,13 @@ jobs:
       - uses: actions/download-artifact@v3
       - run: |
           mv build/libp8g++.dylib build/libp8g++.so build/p8g++.dll build/p8g++.wasm c++
-          mv build/p8g.js js
+          mv build/p8g.js build/p8g.d.ts js
           mv build java
           cd java
           make build/p8g.jar
           rm -rf build/io
           rm -f build/io_github_bernhardfritz_p8g_Sketch.dll build/libio_github_bernhardfritz_p8g_Sketch.dylib build/libio_github_bernhardfritz_p8g_Sketch.so
-          zip -jr p8g.zip build ../c/p8g.h ../c/p8g.html ../c/p8g.wasm ../c++/libp8g++.dylib ../c++/libp8g++.so ../c++/p8g++.dll ../c++/p8g++.wasm ../c++/p8g.hpp ../js/p8g.js
+          zip -jr p8g.zip build ../c/p8g.h ../c/p8g.html ../c/p8g.wasm ../c++/libp8g++.dylib ../c++/libp8g++.so ../c++/p8g++.dll ../c++/p8g++.wasm ../c++/p8g.hpp ../js/p8g.js ../js/p8g.d.ts
       - uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:

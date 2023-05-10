@@ -7,7 +7,7 @@ Sets the current font size. This size will be used in all subsequent calls to th
 ## Syntax
 
 ```c
-textSize()
+textSize(size)
 ```
 
 ## Parameters

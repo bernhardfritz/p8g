@@ -1,6 +1,6 @@
 {
   "name": "p8g.js",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Precessing, also known as p8g, is a general-purpose 2D graphics library",
   "keywords": [
     "creative-coding",
@@ -15,15 +15,18 @@
   "license": "MIT",
   "author": "Bernhard Fritz <bernhard.e.fritz@gmail.com> (https://github.com/bernhardfritz)",
   "main": "dist/p8g.js",
+  "types": "dist/p8g.d.ts",
   "files": [
     "dist/"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c && tsc src/p8g.js --declaration --allowJs --emitDeclarationOnly --removeComments && mv src/p8g.d.ts dist/p8g.d.ts"
   },
   "devDependencies": {
+    "@types/node": "^20.1.2",
     "rollup": "^2.78.1",
     "rollup-plugin-base64": "^1.0.1",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^5.0.4"
   }
 }
