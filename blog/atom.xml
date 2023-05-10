@@ -2,11 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bernhardfritz.github.io/p8g/blog</id>
     <title>Precessing Blog</title>
-    <updated>2023-04-06T00:00:00.000Z</updated>
+    <updated>2023-05-10T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bernhardfritz.github.io/p8g/blog"/>
     <subtitle>Precessing Blog</subtitle>
     <icon>https://bernhardfritz.github.io/p8g/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[p8g v0.9.0 is out! 🎉]]></title>
+        <id>/2023/05/10/p8g-0-9-0-is-out copy</id>
+        <link href="https://bernhardfritz.github.io/p8g/blog/2023/05/10/p8g-0-9-0-is-out copy"/>
+        <updated>2023-05-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[* add TypeScript support]]></summary>
+        <content type="html"><![CDATA[<ul><li>add TypeScript support</li></ul>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Sorting algorithms 📚]]></title>
         <id>/2023/04/06/sorting-algorithms</id>

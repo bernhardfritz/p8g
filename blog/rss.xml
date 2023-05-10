@@ -4,10 +4,18 @@
         <title>Precessing Blog</title>
         <link>https://bernhardfritz.github.io/p8g/blog</link>
         <description>Precessing Blog</description>
-        <lastBuildDate>Thu, 06 Apr 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 10 May 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[p8g v0.9.0 is out! 🎉]]></title>
+            <link>https://bernhardfritz.github.io/p8g/blog/2023/05/10/p8g-0-9-0-is-out copy</link>
+            <guid>/2023/05/10/p8g-0-9-0-is-out copy</guid>
+            <pubDate>Wed, 10 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[* add TypeScript support]]></description>
+            <content:encoded><![CDATA[<ul><li>add TypeScript support</li></ul>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Sorting algorithms 📚]]></title>
             <link>https://bernhardfritz.github.io/p8g/blog/2023/04/06/sorting-algorithms</link>
