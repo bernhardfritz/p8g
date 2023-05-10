@@ -1,5 +1,5 @@
 ---
-description: JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript standard. It has dynamic typing, prototype-based object-orientation, and first-class functions. It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has application programming interfaces (APIs) for working with text, dates, regular expressions, standard data structures, and the Document Object Model (DOM).
+description: TypeScript is a free and open-source programming language developed by Microsoft that adds static typing with optional type annotations to JavaScript. It is designed for the development of large applications and transpiles to JavaScript. Because TypeScript is a superset of JavaScript, all JavaScript programs are syntactically valid TypeScript, but they can fail to type-check for safety reasons.
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -8,14 +8,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import IconExternalLink from '@theme/IconExternalLink';
 
-# JavaScript
+# TypeScript
 
 ## Hello rectangle!
 
 <div className="flex">
 <div style={{flex: 1}}>
 
-```js title=hello-rectangle.js
+```ts title=hello-rectangle.ts
 import p8g, {
   background,
   createCanvas,
@@ -58,34 +58,20 @@ createCanvas(320, 320);
 
 ## Run in browser
 
-<Tabs groupId="js">
+<Tabs groupId="ts">
 <TabItem value="download" label="p8g.zip">
 
 ```
 .
-├── hello-rectangle.js
+├── hello-rectangle.ts
 ├── index.html
+├── p8g.d.ts
 └── p8g.js
 
-0 directories, 3 files
+0 directories, 4 files
 ```
 
-Use something like `python -m http.server` or https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer to serve your sketch during development.
-</TabItem>
-<TabItem value="cdn" label="CDN">
-
-```
-.
-├── hello-rectangle.js
-└── index.html
-
-0 directories, 2 files
-```
-
-```diff title=hello-rectangle.js
-- import { background, createCanvas, rect } from './p8g.js';
-+ import { background, createCanvas, rect } from 'https://unpkg.com/p8g.js';
-```
+```tsc hello-rectangle.ts --module esnext --target es2017```
 
 Use something like `python -m http.server` or https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer to serve your sketch during development.
 </TabItem>
@@ -93,14 +79,19 @@ Use something like `python -m http.server` or https://marketplace.visualstudio.c
 
 ```
 .
-├── hello-rectangle.js
+├── hello-rectangle.ts
 ├── index.html
 └── vite.config.js
 
 0 directories, 3 files
 ```
 
-```diff title=hello-rectangle.js
+```diff title=index.html
+- <script type="module" src="hello-rectangle.js"></script>
++ <script type="module" src="hello-rectangle.ts"></script>
+```
+
+```diff title=hello-rectangle.ts
 - import { background, createCanvas, rect } from './p8g.js';
 + import { background, createCanvas, rect } from 'p8g.js';
 ```

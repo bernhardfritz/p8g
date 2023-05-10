@@ -54,6 +54,17 @@ const Module = await ModuleFactory({
     return scriptDirectory + path;
   },
 });
+/**
+ * @type {{
+ * draw: () => void,
+ * keyPressed: () => void,
+ * keyReleased: () => void,
+ * mouseMoved: () => void,
+ * mousePressed: () => void,
+ * mouseReleased: () => void,
+ * mouseWheel: (deltaY: number) => void
+ * }}
+ */
 const p8g = {
   draw: () => {},
   keyPressed: () => {},
@@ -80,12 +91,22 @@ export let mouseY = 0;
 export let mouseButton = 0;
 export let mouseIsPressed = false;
 export let deltaTime = 0;
+/** @type {(a: number, b: number, c: number, d: number, e: number, f: number) => void} */
 export const applyMatrix = Module.cwrap('p8g_apply_matrix', 'void', [
   'number',
   'number',
   'number',
   'number',
 ]);
+/**
+ * @type {{
+* (values: [number, number, number, number]) => void;
+* (gray: number) => void;
+* (gray: number, alpha: number) => void;
+* (v1: number, v2: number, v3: number) => void;
+* (v1: number, v2: number, v3: number, alpha: number) => void;
+* }}
+*/
 export const background = (() => {
   const background = Module.cwrap('p8g_background', 'void', ['array']);
   const background1 = Module.cwrap('background1', 'void', ['number']);
@@ -122,14 +143,26 @@ export const background = (() => {
     }
   };
 })();
+/** @type {(mode: RGB | HSB | HSL) => void} */
 export const colorMode = Module.cwrap('p8g_color_mode', 'void', ['number']);
+/** @type {(x: number, y: number, w: number, h: number) => void} */
 export const ellipse = Module.cwrap('p8g_ellipse', 'void', [
   'number',
   'number',
   'number',
   'number',
 ]);
+/** @type {(mode: CORNER | CORNERS | RADIUS | CENTER) => void} */
 export const ellipseMode = Module.cwrap('p8g_ellipse_mode', 'void', ['number']);
+/**
+ * @type {{
+* (values: [number, number, number, number]) => void;
+* (gray: number) => void;
+* (gray: number, alpha: number) => void;
+* (v1: number, v2: number, v3: number) => void;
+* (v1: number, v2: number, v3: number, alpha: number) => void;
+* }}
+*/
 export const fill = (() => {
   const fill = Module.cwrap('p8g_fill', 'void', ['array']);
   const fill1 = Module.cwrap('fill1', 'void', ['number']);
@@ -162,6 +195,18 @@ export const fill = (() => {
     }
   };
 })();
+/** @typedef {{ _index: number, width: number, height: number }} Image */
+/**
+ * @type {{
+ * (img: Image, x: number, y: number) => void;
+ * (img: Image, x: number, y: number, width: number) => void;
+ * (img: Image, x: number, y: number, width: number, height: number) => void;
+ * (img: Image, dx: number, dy: number, dw: number, dh: number, sx: number) => void;
+ * (img: Image, dx: number, dy: number, dw: number, dh: number, sx: number, sy: number) => void;
+ * (img: Image, dx: number, dy: number, dw: number, dh: number, sx: number, sy: number, sw: number) => void;
+ * (img: Image, dx: number, dy: number, dw: number, dh: number, sx: number, sy: number, sw: number, sh: number) => void;
+ * }}
+ */
 export const image = (() => {
   const image = Module.cwrap('image', 'void', [
     'number',
@@ -273,13 +318,17 @@ export const image = (() => {
     }
   };
 })();
+/** @type {(mode: CORNER | CORNERS | RADIUS | CENTER) => void} */
 export const imageMode = Module.cwrap('p8g_image_mode', 'void', ['number']);
+/** @type {(x1: number, y1: number, x2: number, y2: number) => void} */
 export const line = Module.cwrap('p8g_line', 'void', [
   'number',
   'number',
   'number',
   'number',
 ]);
+/** @typedef {{ _index: number }} Font */
+/** @type {(filename: string) => Promise<Font>} */
 export const loadFont = (() => {
   const loadFont = Module.cwrap('loadFont', 'number', ['string']);
   return async (url) => {
@@ -296,6 +345,7 @@ export const loadFont = (() => {
     };
   };
 })();
+/** @type {(filename: string) => Promise<Image>} */
 export const loadImage = (() => {
   const loadImage = Module.cwrap('loadImage', 'number', ['string']);
   return async (url) => {
@@ -322,19 +372,34 @@ export const loadImage = (() => {
     };
   };
 })();
+/** @type {() => number} */
 export const millis = (() => {
   const time = Module.cwrap('p8g_time', 'float', []);
   return () => {
     return time() * 1000;
   };
 })();
+/** @type {() => void} */
 export const noFill = Module.cwrap('p8g_no_fill', 'void', []);
+/** @type {() => void} */
 export const noSmooth = Module.cwrap('p8g_no_smooth', 'void', []);
+/** @type {() => void} */
 export const noStroke = Module.cwrap('p8g_no_stroke', 'void', []);
+/** @type {() => void} */
 export const noTint = Module.cwrap('p8g_no_tint', 'void', []);
+/** @type {(x: number, y: number) => void} */
 export const point = Module.cwrap('p8g_point', 'void', ['number', 'number']);
+/** @type {() => void} */
 export const pop = Module.cwrap('p8g_pop', 'void', []);
+/** @type {() => void} */
 export const push = Module.cwrap('p8g_push', 'void', []);
+/**
+ * @type {{
+ * () => number;
+ * (max: number) => number;
+ * (min: number, max: number) => number;
+ * }}
+ */
 export const random = (() => {
   const random = Module.cwrap('p8g_random', 'number', ['number', 'number']);
   return (...args) => {
@@ -348,17 +413,23 @@ export const random = (() => {
     }
   };
 })();
+/** @type {(seed: number) => void} */
 export const randomSeed = Module.cwrap('p8g_random_seed', 'void', ['number']);
+/** @type {(x: number, y: number, w: number, h: number) => void} */
 export const rect = Module.cwrap('p8g_rect', 'void', [
   'number',
   'number',
   'number',
   'number',
 ]);
+/** @type {(mode: CORNER | CORNERS | RADIUS | CENTER) => void} */
 export const rectMode = Module.cwrap('p8g_rect_mode', 'void', ['number']);
+/** @type {() => void} */
 export const resetMatrix = Module.cwrap('p8g_reset_matrix', 'void', []);
+/** @type {(angle: number) => void} */
 export const rotate = Module.cwrap('p8g_rotate', 'void', ['number']);
 
+/** @type {(width: number, height: number) => HTMLCanvasElement} */
 export const createCanvas = (() => {
   const run = Module.cwrap('run', 'void', [
     'number',
@@ -425,6 +496,12 @@ export const createCanvas = (() => {
     return Module.canvas;
   };
 })();
+/**
+ * @type {{
+ * (s: number) => void;
+ * (x: number, y: number) => void;
+ * }}
+ */
 export const scale = (() => {
   const scale = Module.cwrap('p8g_scale', 'void', ['number']);
   return (...args) => {
@@ -438,7 +515,17 @@ export const scale = (() => {
     }
   };
 })();
+/** @type {() => void} */
 export const smooth = Module.cwrap('p8g_smooth', 'void', []);
+/**
+ * @type {{
+* (values: [number, number, number, number]) => void;
+* (gray: number) => void;
+* (gray: number, alpha: number) => void;
+* (v1: number, v2: number, v3: number) => void;
+* (v1: number, v2: number, v3: number, alpha: number) => void;
+* }}
+*/
 export const stroke = (() => {
   const stroke = Module.cwrap('p8g_stroke', 'void', ['array']);
   const stroke1 = Module.cwrap('stroke1', 'void', ['number']);
@@ -475,21 +562,34 @@ export const stroke = (() => {
     }
   };
 })();
+/** @type {(weight: number) => void} */
 export const strokeWeight = Module.cwrap('p8g_stroke_weight', 'void', [
   'number',
 ]);
+/** @type {(str: string, x: number, y: number) => void} */
 export const text = Module.cwrap('p8g_text', 'void', [
   'string',
   'number',
   'number',
 ]);
+/** @type {(font: Font) => void} */
 export const textFont = (() => {
   const textFont = Module.cwrap('textFont', 'void', ['number']);
   return (font) => {
     textFont(font._index);
   };
 })();
+/** @type {(size: number) => void} */
 export const textSize = Module.cwrap('p8g_text_size', 'void', ['number']);
+/**
+ * @type {{
+ * (values: [number, number, number, number]) => void;
+ * (gray: number) => void;
+ * (gray: number, alpha: number) => void;
+ * (v1: number, v2: number, v3: number) => void;
+ * (v1: number, v2: number, v3: number, alpha: number) => void;
+ * }}
+ */
 export const tint = (() => {
   const tint = Module.cwrap('p8g_tint', 'void', ['array']);
   const tint1 = Module.cwrap('tint1', 'void', ['number']);
@@ -522,10 +622,12 @@ export const tint = (() => {
     }
   };
 })();
+/** @type {(x: number, y: number) => void} */
 export const translate = Module.cwrap('p8g_translate', 'void', [
   'number',
   'number',
 ]);
+/** @type {(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) => void} */
 export const triangle = Module.cwrap('p8g_triangle', 'void', [
   'number',
   'number',

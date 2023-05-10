@@ -12,20 +12,23 @@
 
 |                                                Beginner friendly                                                 |                                    Language-agnostic                                     |                                                   Cross-platform                                                   |
 | :--------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: |
-| p8g has been developed for individuals interested in getting into creative programming no matter the experience. | p8g is available for C, C++, Java and JavaScript allowing further language bindings to be developed. | p8g applications can be developed on and built for all major operating systems including Windows, Linux and macOS as well as the web. |
+| p8g has been developed for individuals interested in getting into creative programming no matter the experience. | p8g is available for C, C++, Java, JavaScript and TypeScript allowing further language bindings to be developed. | p8g applications can be developed on and built for all major operating systems including Windows, Linux and macOS as well as the web. |
 
 ## Install
 
 `npm install p8g.js`
 
-`npm install snowpack --save-dev`
+`npm install vite --save-dev`
+
+`npm install vite-plugin-top-level-await --save-dev`
 
 ## Hello rectangle!
 
 ```
 .
 ├── hello-rectangle.js
-└── index.html
+├── index.html
+└── vite.config.js
 ```
 
 ### hello-rectangle.js
@@ -59,9 +62,20 @@ createCanvas(320, 320);
 </html>
 ```
 
+### vite.config.js
+
+```js
+import { defineConfig } from 'vite';
+import topLevelAwait from 'vite-plugin-top-level-await';
+
+export default defineConfig({
+  plugins: [topLevelAwait()],
+});
+```
+
 ## Run
 
-`npx snowpack dev`
+`npx vite`
 
 ## Links
 
